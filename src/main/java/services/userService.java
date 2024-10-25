@@ -52,7 +52,7 @@ public class userService {
 	public User getOne(User user) {
 
 		try {
-			PreparedStatement pst = con.prepareStatement("select * from users where email = ? and password = ?");
+			PreparedStatement pst = con.prepareStatement("select * from users where email = ? or password = ?");
 
 			pst.setString(1, user.getEmail());
 			pst.setString(2, user.getPassword());

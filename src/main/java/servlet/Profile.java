@@ -97,9 +97,9 @@ public class Profile extends HttpServlet {
 					user.setPassword(hash.hashPassword(upwd));
 
 					if (upwd != null || !upwd.equals("")) {
-						status = service.updateUserAll(user);
-					} else {
 						status = service.updateUserWithoutPassword(user);
+					} else {
+						status = service.updateUserAll(user);
 					}
 
 					if (status) {
