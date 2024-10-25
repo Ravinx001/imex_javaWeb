@@ -26,8 +26,8 @@
 				<li><a href="category" class="nav-link px-3"> <span
 						class="me-2"><i class="bi bi-bookmarks-fill"></i></span> <span>Categories</span>
 				</a></li>
-				<li><a href="adminBrand.jsp"" class="nav-link px-3"> <span
-						class="me-2"><i class="bi bi-gem"></i></span> <span>Brands</span>
+				<li><a href="brand" class="nav-link px-3"> <span
+						class="me-2"><i class="bi bi-nintendo-switch"></i></span> <span>Brands</span>
 				</a></li>
 				<li class="my-4">
 					<hr class="dropdown-divider bg-light" />

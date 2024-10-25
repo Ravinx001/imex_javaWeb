@@ -117,37 +117,6 @@ public class categoryService {
 		return false;
 	}
 
-//	public ArrayList<Category> getAllCategories() {
-//		try {
-//
-//			ArrayList<Category> listcategory = new ArrayList<Category>();
-//
-//			String query = "select * from category";
-//
-//			ResultSet rs = pst.executeQuery();
-//
-//			Statement statement = DBConnect.getConnection().createStatement();
-//			ResultSet rs = statement.executeQuery(query);
-//
-//			while (rs.next()) {
-//
-//				Category category = new Category();
-//
-//				category.setCategoryId(rs.getInt("categoryId"));
-//				category.setCategoryName(rs.getString("category"));
-//
-//				listcategory.add(category);
-//			}
-//
-//			return listcategory;
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		return null;
-//	}
-
 	public ArrayList<Category> getAllCategories() {
 		try {
 			ArrayList<Category> listcategory = new ArrayList<Category>();

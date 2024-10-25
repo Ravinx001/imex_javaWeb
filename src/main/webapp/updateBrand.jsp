@@ -34,7 +34,7 @@ if (session.getAttribute("userId") == null) {
 			<br>
 			<div class="row">
 				<div class="col-md-12">
-					<h4>Categories</h4>
+					<h4>Brands</h4>
 				</div>
 			</div>
 			<br>
@@ -44,20 +44,19 @@ if (session.getAttribute("userId") == null) {
 
 					<div class="card mb-4">
 						<div class="card-header">
-							<h5 class="text-start font-weight-light my-2">Update the
-								Category</h5>
+							<h5 class="text-start font-weight-light my-2">Edit the Brand</h5>
 						</div>
 
 						<div class="card-body">
 
 							<div class="mb-3">
-								<form method="post" action="categoryupdate">
-									<label for="exampleInputName" class="form-label">Category
+								<form method="post" action="brandupdate">
+									<label for="exampleInputName" class="form-label">Brand
 										Name</label> <input type="text" class="form-control"
-										id="exampleInputName" name="categoryName"
-										aria-describedby="nameHelp" value="${category.categoryName}"
-										required> <input type="hidden" name="categoryId"
-										value="${category.categoryId}" required> <input
+										id="exampleInputName" name="brandName"
+										aria-describedby="nameHelp" value="${brand.brandName}"
+										required> <input type="hidden" name="brandId"
+										value="${brand.brandId}" required> <input
 										type="hidden" name="process" value="update" required>
 
 									<button class="mt-3 btn btn-primary" type="submit">Update</button>
@@ -91,14 +90,14 @@ if (session.getAttribute("userId") == null) {
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<p>Are you sure you want to delete this category?</p>
+					<p>Are you sure you want to delete this brand ?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
-					<form method="post" action="categoryupdate">
-						<input type="hidden" name="categoryId"
-							value="${category.categoryId}" required> <input
+					<form method="post" action="brandupdate">
+						<input type="hidden" name="brandId"
+							value="${brand.brandId}" required> <input
 							type="hidden" name="process" value="delete" required>
 						<button class="btn btn-danger" type="submit">Delete</button>
 					</form>
