@@ -50,79 +50,63 @@ if (session.getAttribute("userId") == null) {
 
 						<div class="card-body">
 
-							<form method="post" action="category">
-
-								<div class="mb-3">
+							<div class="mb-3">
+								<form method="post" action="categoryupdate">
 									<label for="exampleInputName" class="form-label">Category
 										Name</label> <input type="text" class="form-control"
 										id="exampleInputName" name="categoryName"
-										aria-describedby="nameHelp" required>
-								</div>
+										aria-describedby="nameHelp" value="${category.categoryName}"
+										required> <input type="hidden" name="categoryId"
+										value="${category.categoryId}" required> <input
+										type="hidden" name="process" value="update" required>
 
-								<div
-									class="d-flex align-items-center justify-content-between mt-4 mb-0">
-									<input type="hidden" name="process" value="create">
-									<button class="btn btn-primary" type="submit">Create</button>
-								</div>
+									<button class="mt-3 btn btn-primary" type="submit">Update</button>
+								</form>
+								<button class="mt-3 btn btn-danger" data-bs-toggle="modal"
+									data-bs-target="#modalDeleteConfirm">Delete</button>
 
-							</form>
-
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-
-
-			<!-- Featured Ads Table -->
-			<div class="row">
-				<div class="col-md-12 mb-3">
-					<div class="card">
-						<div class="card-header fw-bold text-primary">
-							<span><i class="bi bi-bookmarks-fill"></i></span> Categories
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table id="example" class="table table-striped data-table"
-									style="width: 100%">
-									<thead>
-										<tr>
-											<th>Id</th>
-											<th>Category Name</th>
-											<th>Manage</th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<c:forEach var="category" items="${categories}">
-											<tr>
-												<td>${category.categoryId}</td>
-												<td>${category.categoryName}</td>
-												<td><a
-													href="categoryupdate?categoryId=${category.categoryId}"><button
-															class="btn btn-sm btn-primary" type="submit">Edit</button></a>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-
-									<tfoot>
-										<tr>
-											<th>Id</th>
-											<th>Category Name</th>
-											<th>Manage</th>
-										</tr>
-									</tfoot>
-								</table>
 							</div>
+
 						</div>
+
 					</div>
+
 				</div>
 			</div>
+
+
 
 		</div>
 	</main>
+
+	<!-- Vertically centered modal -->
+	<!-- Vertically centered modal -->
+	<div class="modal fade" id="modalDeleteConfirm" tabindex="-1"
+		aria-labelledby="modalDeleteConfirmLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalDeleteConfirmLabel">Confirm</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to delete this category?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<form method="post" action="categoryupdate">
+						<input type="hidden" name="categoryId"
+							value="${category.categoryId}" required> <input
+							type="hidden" name="process" value="delete" required>
+						<button class="btn btn-danger" type="submit">Delete</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<script src="./js/bootstrap.bundle.min.js"></script>
 	<script

@@ -23,8 +23,8 @@
 				<li><a href="Admin-Used-Vehicles.html" class="nav-link px-3">
 						<span class="me-2"><i class="bi bi-car-front"></i></span> <span>Vehicles</span>
 				</a></li>
-				<li><a href="Admin-Gemstones.html" class="nav-link px-3"> <span
-						class="me-2"><i class="bi bi-gem"></i></span> <span>Categories</span>
+				<li><a href="category" class="nav-link px-3"> <span
+						class="me-2"><i class="bi bi-bookmarks-fill"></i></span> <span>Categories</span>
 				</a></li>
 				<li><a href="Admin-Gemstones.html" class="nav-link px-3"> <span
 						class="me-2"><i class="bi bi-gem"></i></span> <span>Brands</span>

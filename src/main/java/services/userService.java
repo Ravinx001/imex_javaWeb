@@ -3,28 +3,12 @@ package services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 
 import model.User;
 import utils.DBConnect;
 
 public class userService {
 	private Connection con = DBConnect.getConnection();
-
-	public void regCustomer(User user) {
-		try {
-
-			String query = "insert into users values('" + user.getEmail() + "','" + user.getName() + "', '"
-					+ user.getPassword() + "')";
-
-			Statement statement = DBConnect.getConnection().createStatement();
-			statement.executeUpdate(query);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	public boolean validate(User user) {
 		try {
@@ -160,62 +144,6 @@ public class userService {
 		}
 
 		return false;
-	}
-
-	public ArrayList<User> getAllCustomers() {
-		try {
-
-			ArrayList<User> listcus = new ArrayList<User>();
-
-			String query = "select * from users";
-
-			Statement statement = DBConnect.getConnection().createStatement();
-			ResultSet rs = statement.executeQuery(query);
-
-			while (rs.next()) {
-
-				User cus = new User();
-
-				cus.setName(rs.getString("name"));
-				cus.setEmail(rs.getString("email"));
-				cus.setPassword(rs.getString("password"));
-
-				listcus.add(cus);
-			}
-
-			return listcus;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	public User singleDataButton(User user) {
-		try {
-
-			String query = "select * from users where email = '" + user.getEmail() + "'";
-
-			Statement statement = DBConnect.getConnection().createStatement();
-
-			ResultSet rs = statement.executeQuery(query);
-
-			if (rs.next()) {
-
-				user.setUserId(rs.getInt("userId"));
-				user.setName(rs.getString("name"));
-				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("password"));
-
-				return user;
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
 	}
 
 }
