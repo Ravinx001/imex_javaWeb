@@ -36,6 +36,7 @@ public class Profile extends HttpServlet {
 		String upwd = request.getParameter("password");
 		String reupwd = request.getParameter("repassword");
 		RequestDispatcher dispatcher = null;
+		dispatcher = request.getRequestDispatcher("profile.jsp");
 		HttpSession session = request.getSession();
 
 		// Regular expression for email validation
@@ -47,14 +48,12 @@ public class Profile extends HttpServlet {
 			request.setAttribute("validation", "Invalid Name !");
 			request.setAttribute("status", "failed");
 
-			dispatcher = request.getRequestDispatcher("profile.jsp");
 			dispatcher.forward(request, response);
 
 		} else if (uemail == null || uemail.equals("") || !matcher.matches()) {
 			request.setAttribute("validation", "Invalid Email !");
 			request.setAttribute("status", "failed");
 
-			dispatcher = request.getRequestDispatcher("profile.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			userService service = new userService();
@@ -66,65 +65,57 @@ public class Profile extends HttpServlet {
 					request.setAttribute("validation", "This Email Unavailabe !");
 					request.setAttribute("status", "failed");
 
-					dispatcher = request.getRequestDispatcher("profile.jsp");
 					dispatcher.forward(request, response);
 				}
+			}
 
+			if ((!upwd.equals("")) && upwd.length() < 8 || upwd.length() > 50) {
+				request.setAttribute("validation", "Invalid Password !");
+				request.setAttribute("status", "failed");
+
+				dispatcher.forward(request, response);
+
+			} else if ((!upwd.equals("")) && !upwd.equals(reupwd)) {
+				request.setAttribute("validation", "Invalid Re Enter Password !");
+				request.setAttribute("status", "failed");
+
+				dispatcher.forward(request, response);
 			} else {
-				if ((!upwd.equals("")) && upwd.length() < 8 || upwd.length() > 50) {
-					request.setAttribute("validation", "Invalid Password !");
-					request.setAttribute("status", "failed");
+				boolean status = false;
 
-					dispatcher = request.getRequestDispatcher("profile.jsp");
-					dispatcher.forward(request, response);
+				Hashing hash = new Hashing();
 
-				} else if ((!upwd.equals("")) && !upwd.equals(reupwd)) {
-					request.setAttribute("validation", "Invalid Re Enter Password !");
-					request.setAttribute("status", "failed");
+				User user = new User();
 
-					dispatcher = request.getRequestDispatcher("profile.jsp");
-					dispatcher.forward(request, response);
+				user.setUserId(session.getAttribute("userId"));
+				user.setName(uname);
+				user.setEmail(uemail);
+				user.setPassword(hash.hashPassword(upwd));
+
+				if (upwd != null || !upwd.equals("")) {
+					status = service.updateUserWithoutPassword(user);
 				} else {
-					boolean status = false;
-
-					Hashing hash = new Hashing();
-
-					User user = new User();
-
-					user.setUserId(session.getAttribute("userId"));
-					user.setName(uname);
-					user.setEmail(uemail);
-					user.setPassword(hash.hashPassword(upwd));
-
-					if (upwd != null || !upwd.equals("")) {
-						status = service.updateUserWithoutPassword(user);
-					} else {
-						status = service.updateUserAll(user);
-					}
-
-					if (status) {
-
-						User loggedUser = service.getOne(user);
-
-						session.setAttribute("userId", loggedUser.getUserId());
-						session.setAttribute("name", loggedUser.getName());
-						session.setAttribute("email", loggedUser.getEmail());
-						session.setAttribute("password", loggedUser.getPassword());
-
-						request.setAttribute("status", "success");
-						request.setAttribute("validation", "Profile Successfully Updated !");
-
-						dispatcher = request.getRequestDispatcher("profile.jsp");
-
-					} else {
-						request.setAttribute("status", "failed");
-						request.setAttribute("validation", "Update Failed !");
-						dispatcher = request.getRequestDispatcher("profile.jsp");
-					}
-
-					dispatcher.forward(request, response);
+					status = service.updateUserAll(user);
 				}
 
+				if (status) {
+
+					User loggedUser = service.getUserById(user);
+
+					session.setAttribute("userId", loggedUser.getUserId());
+					session.setAttribute("name", loggedUser.getName());
+					session.setAttribute("email", loggedUser.getEmail());
+					session.setAttribute("password", loggedUser.getPassword());
+
+					request.setAttribute("status", "success");
+					request.setAttribute("validation", "Profile Successfully Updated !");
+
+				} else {
+					request.setAttribute("status", "failed");
+					request.setAttribute("validation", "Update Failed !");
+				}
+
+				dispatcher.forward(request, response);
 			}
 
 		}
