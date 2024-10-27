@@ -103,7 +103,7 @@ if (session.getAttribute("userId") == null) {
 						</div>
 					</div>
 
-					<form action="" method="POST" enctype="multipart/form-data"
+					<form action="vehicle" method="POST" enctype="multipart/form-data"
 						class="row g-3">
 
 						<div class="col-12">
@@ -116,12 +116,13 @@ if (session.getAttribute("userId") == null) {
 						<div class="col-md-12">
 							<label for="exampleFormControlInput1" class="form-label">Title</label>
 							<input type="text" class="form-control"
-								id="exampleFormControlInput1">
+								id="exampleFormControlInput1" name="title">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Price</label>
-							<input type="text" class="form-control"
-								id="exampleFormControlInput1" placeholder="20,000,000">
+							<input type="number" class="form-control"
+								id="exampleFormControlInput1" placeholder="20,000,000"
+								name="price">
 							<div class="mt-2 form-check">
 								<input type="checkbox" name="negotiable"
 									class="form-check-input" id="exampleCheck1"> <label
@@ -130,37 +131,38 @@ if (session.getAttribute("userId") == null) {
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Manufacture
-								Year</label> <input type="text" class="form-control"
-								id="exampleFormControlInput1">
+								Year</label> <input type="number" class="form-control"
+								id="exampleFormControlInput1" name="manufactureYear">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Model</label>
 							<input type="text" class="form-control"
-								id="exampleFormControlInput1">
+								id="exampleFormControlInput1" name="model">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Model
 								Variant</label> <input type="text" class="form-control"
-								id="exampleFormControlInput1">
+								id="exampleFormControlInput1" name="modelVariant">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Mileage</label>
 							<input type="text" class="form-control"
-								id="exampleFormControlInput1">
+								id="exampleFormControlInput1" name="mileage">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Engine
 								Capacity</label> <input type="text" class="form-control"
-								id="exampleFormControlInput1">
+								id="exampleFormControlInput1" name="engineCapacity">
 						</div>
 						<div class="col-md-4">
 							<label for="formFileMultiple" class="form-label">Category</label>
-							<select name="fuelType" class="form-select" id="fueTtype"
+							<select name="category" class="form-select" id="fueTtype"
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Category</option>
 							</select>
 						</div>
-						<div class="col-md-4 d-flex align-items-end justify-content-center">
+						<div
+							class="col-md-4 d-flex align-items-end justify-content-center">
 							<a href="category">
 								<button type="button" class="btn btn-primary">Edit
 									Categories</button>
@@ -168,20 +170,21 @@ if (session.getAttribute("userId") == null) {
 						</div>
 						<div class="col-md-4">
 							<label for="formFileMultiple" class="form-label">Fuel
-								Type</label> <select name="brand" class="form-select" id="brand"
+								Type</label> <select name="fuelType" class="form-select" id="fuelType"
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select a Fuel Type</option>
 							</select>
 						</div>
 						<div class="col-md-4">
 							<label for="formFileMultiple" class="form-label">Brand
-								Type</label> <select name="condition" class="form-select" id="condition"
+								Type</label> <select name="brand" class="form-select" id="brand"
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Brand</option>
 							</select>
 						</div>
 
-						<div class="col-md-4 d-flex align-items-end justify-content-center">
+						<div
+							class="col-md-4 d-flex align-items-end justify-content-center">
 							<a href="brand">
 								<button type="button" class="btn btn-primary">Edit
 									Brands</button>
@@ -192,6 +195,13 @@ if (session.getAttribute("userId") == null) {
 								Type</label> <select name="transmission" class="form-select"
 								id="transmission" aria-describedby="validationServer04Feedback">
 								<option value="">Select the Transmission</option>
+							</select>
+						</div>
+						<div class="col-md-4">
+							<label for="formFileMultiple" class="form-label">Condition</label>
+							<select name="condition" class="form-select" id="condition"
+								aria-describedby="validationServer04Feedback">
+								<option value="">Select the condition</option>
 							</select>
 						</div>
 						<div class="col-md-4">
@@ -210,7 +220,7 @@ if (session.getAttribute("userId") == null) {
 						</div>
 						<div class="col-md-12">
 							<textarea class="form-control" placeholder="Description"
-								id="floatingTextarea2" rows="10"></textarea>
+								id="floatingTextarea2" rows="10" name="description"></textarea>
 						</div>
 
 						<div class="col-md-12 mb-3">

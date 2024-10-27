@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Brand;
 import model.Vehicle;
+import services.validateService;
 import services.vehicleService;
 import utils.IsDouble;
 import utils.IsInt;
@@ -43,6 +43,7 @@ public class VehicleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		vehicleService service = new vehicleService();
+		validateService validateservice = new validateService();
 
 		IsDouble isDouble = new IsDouble();
 		IsInt isInt = new IsInt();
@@ -58,7 +59,8 @@ public class VehicleServlet extends HttpServlet {
 		String mileage = request.getParameter("mileage");
 		String engineCapacity = request.getParameter("engineCapacity");
 		String description = request.getParameter("description");
-		String location = request.getParameter("location");
+		int location = Integer.parseInt(request.getParameter("location"));
+		int condition = Integer.parseInt(request.getParameter("condition"));
 		int category = Integer.parseInt(request.getParameter("category"));
 		int brand = Integer.parseInt(request.getParameter("brand"));
 		int fuelType = Integer.parseInt(request.getParameter("fuelType"));
@@ -66,20 +68,29 @@ public class VehicleServlet extends HttpServlet {
 		int featuring = Integer.parseInt(request.getParameter("featuring"));
 		int userId = Integer.parseInt((String) session.getAttribute("userId"));
 
-		boolean status = service.validateTitle(title);
+		boolean titleStatus = service.validateTitle(title);
+
+		boolean categoryStatus = validateservice.validateCategoryWithId(category);
+		boolean brandStatus = validateservice.validateBrandWithId(brand);
+		boolean fuelTypeStatus = validateservice.validateFueltypeWithId(fuelType);
+		boolean transmissionStatus = validateservice.validateTransmissionWithId(transmission);
+		boolean featuringStatus = validateservice.validateFeaturingWithId(featuring);
+		boolean locationStatus = validateservice.validateLocationWithId(location);
+		boolean conditionStatus = validateservice.validateLocationWithId(condition);
+		boolean userStatus = validateservice.validateUserWithId(userId);
 
 		if (title == null || title.equals("") || title.length() < 2 || title.length() > 100) {
 			request.setAttribute("validation", "Invalid Title !");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
-		} else if (status) {
+		} else if (titleStatus) {
 			request.setAttribute("validation", "This Title is Unavailabe !");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
-		} else if (manufactureYear < 0 || !isInt.isInt(request.getParameter("manufactureYear"))
-				|| manufactureYear > currentYear) {
+		} else if (!manufactureYear.trim().isEmpty() && (manufactureYear < 0
+				|| !isInt.isInt(request.getParameter("manufactureYear")) || manufactureYear > currentYear)) {
 			request.setAttribute("validation", "Invalid Year !");
 			request.setAttribute("status", "failed");
 
@@ -117,8 +128,43 @@ public class VehicleServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
-		} else if (model == null || model.equals("") || model.length() < 2 || model.length() > 50) {
-			request.setAttribute("validation", "Invalid Modal !");
+		} else if (!categoryStatus) {
+			request.setAttribute("validation", "This Category is Unavailabe !");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+		} else if (!brandStatus) {
+			request.setAttribute("validation", "This Brand is Unavailabe !");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+		} else if (!fuelTypeStatus) {
+			request.setAttribute("validation", "This Fuel Type is Unavailabe !");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+		} else if (!transmissionStatus) {
+			request.setAttribute("validation", "This Transmission is Unavailabe !");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+		} else if (!featuringStatus) {
+			request.setAttribute("validation", "This Featuring is Unavailabe !");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+		} else if (!locationStatus) {
+			request.setAttribute("validation", "This Location is Unavailabe !");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+		} else if (!conditionStatus) {
+			request.setAttribute("validation", "This Condition is Unavailabe !");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+		} else if (!userStatus) {
+			request.setAttribute("validation", "This Invalid User Id !");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
@@ -126,35 +172,40 @@ public class VehicleServlet extends HttpServlet {
 
 		Vehicle vehicle = new Vehicle();
 
-		boolean validationStatus = service.validateBrand(brandName);
+		vehicle.setTitle(title);
+		vehicle.setManufactureYear(manufactureYear);
+		vehicle.setModel(model);
+		vehicle.setModelVariant(modelVariant);
+		vehicle.setMileage(mileage);
+		vehicle.setEngineCapacity(engineCapacity);
+		vehicle.setDescription(description);
+		vehicle.setLocation(location);
+		vehicle.setCategotry(category);
+		vehicle.setBrand(brand);
+		vehicle.setFueltype(fuelType);
+		vehicle.setTransmission(transmission);
+		vehicle.setFeaturing(featuring);
+		vehicle.setUserId(userId);
 
-		if (validationStatus) {
-			request.setAttribute("validation", "This Brand is already available !");
-			request.setAttribute("status", "failed");
+		boolean status = service.createVehicle(vehicle);
+
+		if (status) {
+
+			ArrayList<Vehicle> vehicles = service.getAllVehicles();
+			request.setAttribute("vehicles", vehicles);
+
+			dispatcher = request.getRequestDispatcher("adminVehicle.jsp");
+
+			request.setAttribute("status", "success");
+			request.setAttribute("validation", "Vehicle Advertisement Successfully Created !");
 
 			dispatcher.forward(request, response);
 		} else {
+			request.setAttribute("status", "failed");
+			request.setAttribute("validation", "Vehicle Advertisement Creation Failed !");
 
-			boolean status = service.createBrand(brand);
-
-			if (status) {
-
-				ArrayList<Brand> updatedBrands = service.getAllBrands();
-				request.setAttribute("brands", updatedBrands);
-
-				request.setAttribute("status", "success");
-				request.setAttribute("validation", "Brand Successfully Created !");
-
-				dispatcher.forward(request, response);
-			} else {
-				request.setAttribute("status", "failed");
-				request.setAttribute("validation", "Brand Creation Failed !");
-
-				dispatcher.forward(request, response);
-			}
+			dispatcher.forward(request, response);
 		}
-
-		dispatcher.forward(request, response);
 
 	}
 
