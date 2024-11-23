@@ -33,8 +33,8 @@ if (session.getAttribute("userId") == null) {
 			<div class="row">
 				<div class="col-md-12 my-3 d-flex justify-content-between">
 					<h4>Vehicles</h4>
-					<a href="adminVehicleCreate.jsp">
-						<button type="button" class="btn btn-primary">Add a New
+					<a href="vehiclecreate">
+						<button class="btn btn-primary">Add a New
 							Vehicle</button>
 					</a>
 				</div>

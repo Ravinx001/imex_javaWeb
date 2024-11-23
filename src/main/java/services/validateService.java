@@ -125,7 +125,7 @@ public class validateService {
 
 	public boolean validateConditionWithId(int id) {
 		try {
-			PreparedStatement pst = con.prepareStatement("select * from condition where conditionId = ?");
+			PreparedStatement pst = con.prepareStatement("select * from conditions where conditionId = ?");
 
 			pst.setInt(1, id);
 

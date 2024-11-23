@@ -16,7 +16,7 @@ public class Vehicle {
 	int brand;
 	int transmission;
 	int featuring;
-	String location;
+	int location;
 	String description;
 
 	public int getUserId() {
@@ -131,11 +131,11 @@ public class Vehicle {
 		this.featuring = featuring;
 	}
 
-	public String getLocation() {
+	public int getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(int location) {
 		this.location = location;
 	}
 

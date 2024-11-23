@@ -25,7 +25,7 @@ public class vehicleService {
 			pst.setString(6, vehicle.getMileage());
 			pst.setString(7, vehicle.getEngineCapacity());
 			pst.setString(8, vehicle.getDescription());
-			pst.setString(9, vehicle.getLocation());
+			pst.setInt(9, vehicle.getLocation());
 			pst.setInt(10, vehicle.getCategotry());
 			pst.setInt(11, vehicle.getBrand());
 			pst.setInt(12, vehicle.getFueltype());
@@ -85,7 +85,7 @@ public class vehicleService {
 				vehicle.setMileage(rs.getString("mileage"));
 				vehicle.setEngineCapacity(rs.getString("engineCapacity"));
 				vehicle.setDescription(rs.getString("description"));
-				vehicle.setLocation(rs.getString("location"));
+				vehicle.setLocation(rs.getInt("location"));
 				vehicle.setCategotry(rs.getInt("categoryId"));
 				vehicle.setBrand(rs.getInt("brandId"));
 				vehicle.setFueltype(rs.getInt("fuelTypeId"));
@@ -117,7 +117,7 @@ public class vehicleService {
 			pst.setString(6, vehicle.getMileage());
 			pst.setString(7, vehicle.getEngineCapacity());
 			pst.setString(8, vehicle.getDescription());
-			pst.setString(9, vehicle.getLocation());
+			pst.setInt(9, vehicle.getLocation());
 			pst.setInt(10, vehicle.getCategotry());
 			pst.setInt(11, vehicle.getBrand());
 			pst.setInt(12, vehicle.getFueltype());
@@ -183,7 +183,7 @@ public class vehicleService {
 				vehicle.setMileage(rs.getString("mileage"));
 				vehicle.setEngineCapacity(rs.getString("engineCapacity"));
 				vehicle.setDescription(rs.getString("description"));
-				vehicle.setLocation(rs.getString("location"));
+				vehicle.setLocation(rs.getInt("location"));
 				vehicle.setCategotry(rs.getInt("categoryId"));
 				vehicle.setBrand(rs.getInt("brandId"));
 				vehicle.setFueltype(rs.getInt("fuelTypeId"));

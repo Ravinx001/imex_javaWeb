@@ -1,4 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 if (session.getAttribute("userId") == null) {
 	response.sendRedirect("login.jsp");
@@ -103,7 +105,7 @@ if (session.getAttribute("userId") == null) {
 						</div>
 					</div>
 
-					<form action="vehicle" method="POST" enctype="multipart/form-data"
+					<form action="vehiclecreate" method="POST" enctype="multipart/form-data"
 						class="row g-3">
 
 						<div class="col-12">
@@ -159,6 +161,9 @@ if (session.getAttribute("userId") == null) {
 							<select name="category" class="form-select" id="fueTtype"
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Category</option>
+								<c:forEach var="category" items="${categories}">
+									<option value="${category.categoryId}">${category.categoryName}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div
@@ -173,6 +178,9 @@ if (session.getAttribute("userId") == null) {
 								Type</label> <select name="fuelType" class="form-select" id="fuelType"
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select a Fuel Type</option>
+								<c:forEach var="fuelType" items="${fuelTypes}">
+									<option value="${fuelType.fuelTypeId}">${fuelType.fuelType}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-4">
@@ -180,6 +188,9 @@ if (session.getAttribute("userId") == null) {
 								Type</label> <select name="brand" class="form-select" id="brand"
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Brand</option>
+								<c:forEach var="brand" items="${brands}">
+									<option value="${brand.brandId}">${brand.brandName}</option>
+								</c:forEach>
 							</select>
 						</div>
 
@@ -195,13 +206,19 @@ if (session.getAttribute("userId") == null) {
 								Type</label> <select name="transmission" class="form-select"
 								id="transmission" aria-describedby="validationServer04Feedback">
 								<option value="">Select the Transmission</option>
+								<c:forEach var="transmission" items="${transmissions}">
+									<option value="${transmission.transmissionId}">${transmission.transmission}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-4">
 							<label for="formFileMultiple" class="form-label">Condition</label>
 							<select name="condition" class="form-select" id="condition"
 								aria-describedby="validationServer04Feedback">
-								<option value="">Select the condition</option>
+								<option value="">Select the Condition</option>
+								<c:forEach var="condition" items="${conditions}">
+									<option value="${condition.conditionId}">${condition.condition}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-4">
@@ -209,6 +226,9 @@ if (session.getAttribute("userId") == null) {
 								Type</label> <select name="featuring" class="form-select" id="featuring"
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Ad Featuring</option>
+								<c:forEach var="featuring" items="${featurings}">
+									<option value="${featuring.featuringId}">${featuring.featuring}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-4">
@@ -216,6 +236,9 @@ if (session.getAttribute("userId") == null) {
 							<select name="location" class="form-select" id="location"
 								aria-describedby="validationServer04Feedback">
 								<option value="">Select the location</option>
+								<c:forEach var="location" items="${locations}">
+									<option value="${location.locationId}">${location.location}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-12">
@@ -224,7 +247,7 @@ if (session.getAttribute("userId") == null) {
 						</div>
 
 						<div class="col-md-12 mb-3">
-							<button type="button" class="btn btn-primary">Create</button>
+							<button type="submit" class="btn btn-primary">Create</button>
 						</div>
 
 					</form>
