@@ -105,8 +105,7 @@ if (session.getAttribute("userId") == null) {
 						</div>
 					</div>
 
-					<form action="vehiclecreate" method="POST" enctype="multipart/form-data"
-						class="row g-3">
+					<form action="vehiclecreate" method="POST" class="row g-3">
 
 						<div class="col-12">
 							<label for="formFileMultiple" class="form-label">Images</label>
@@ -122,14 +121,8 @@ if (session.getAttribute("userId") == null) {
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Price</label>
-							<input type="number" class="form-control"
-								id="exampleFormControlInput1" placeholder="20,000,000"
-								name="price">
-							<div class="mt-2 form-check">
-								<input type="checkbox" name="negotiable"
-									class="form-check-input" id="exampleCheck1"> <label
-									class="form-check-label" for="exampleCheck1">Negotiable</label>
-							</div>
+							<input type="text" class="form-control"
+								id="exampleFormControlInput1" name="vehicleprice">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Manufacture

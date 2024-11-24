@@ -166,7 +166,7 @@ public class vehicleService {
 		try {
 			ArrayList<Vehicle> listvehicle = new ArrayList<Vehicle>();
 
-			String query = "select * from vehicle";
+			String query = "select * from vehicle inner join category on category.categoryId = vehicle.categoryId inner join brand on brand.brandId = vehicle.brandId inner join fueltype on fueltype.fueltypeId = vehicle.fueltypeId inner join transmission on transmission.transmissionId = vehicle.transmissionId inner join featuring on featuring.featuringId = vehicle.featuringId inner join conditions on conditions.conditionId = vehicle.conditionId inner join location on location.locationId = vehicle.locationId";
 			Connection con = DBConnect.getConnection();
 
 			PreparedStatement pst = con.prepareStatement(query);
@@ -176,20 +176,30 @@ public class vehicleService {
 				Vehicle vehicle = new Vehicle();
 
 				vehicle.setVehicleId(rs.getInt("vehicleId"));
+				vehicle.setUserId(rs.getInt("userId"));
 				vehicle.setTitle(rs.getString("title"));
+				vehicle.setPrice(rs.getDouble("price"));
 				vehicle.setManufactureYear(rs.getInt("manufactureYear"));
-				vehicle.setModel(rs.getString("modal"));
+				vehicle.setModel(rs.getString("model"));
 				vehicle.setModelVariant(rs.getString("modelVariant"));
 				vehicle.setMileage(rs.getString("mileage"));
 				vehicle.setEngineCapacity(rs.getString("engineCapacity"));
 				vehicle.setDescription(rs.getString("description"));
-				vehicle.setLocation(rs.getInt("location"));
 				vehicle.setCategotry(rs.getInt("categoryId"));
 				vehicle.setBrand(rs.getInt("brandId"));
 				vehicle.setFueltype(rs.getInt("fuelTypeId"));
 				vehicle.setTransmission(rs.getInt("transmissionId"));
 				vehicle.setFeaturing(rs.getInt("featuringId"));
-				vehicle.setUserId(rs.getInt("userId"));
+				vehicle.setCondition(rs.getInt("conditionId"));
+				vehicle.setLocation(rs.getInt("locationId"));
+
+				vehicle.setCategotryName(rs.getString("category"));
+				vehicle.setBrandName(rs.getString("brand"));
+				vehicle.setFueltypeName(rs.getString("fuelType"));
+				vehicle.setTransmissionName(rs.getString("transmission"));
+				vehicle.setFeaturingName(rs.getString("featuring"));
+				vehicle.setConditionName(rs.getString("condition"));
+				vehicle.setLocationName(rs.getString("location"));
 
 				listvehicle.add(vehicle);
 			}

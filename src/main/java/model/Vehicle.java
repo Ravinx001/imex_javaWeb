@@ -11,13 +11,85 @@ public class Vehicle {
 	String modelVariant;
 	String mileage;
 	String engineCapacity;
+	String description;
 	int categotry;
-	int fueltype;
 	int brand;
+	int fueltype;
 	int transmission;
 	int featuring;
+	int condition;
 	int location;
-	String description;
+	String categotryName;
+	String brandName;
+	String fueltypeName;
+	String transmissionName;
+	String featuringName;
+	String conditionName;
+	String locationName;
+
+	public String getCategotryName() {
+		return categotryName;
+	}
+
+	public void setCategotryName(String categotryName) {
+		this.categotryName = categotryName;
+	}
+
+	public String getBrandName() {
+		return brandName;
+	}
+
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+
+	public String getFueltypeName() {
+		return fueltypeName;
+	}
+
+	public void setFueltypeName(String fueltypeName) {
+		this.fueltypeName = fueltypeName;
+	}
+
+	public String getTransmissionName() {
+		return transmissionName;
+	}
+
+	public void setTransmissionName(String transmissionName) {
+		this.transmissionName = transmissionName;
+	}
+
+	public String getFeaturingName() {
+		return featuringName;
+	}
+
+	public void setFeaturingName(String featuringName) {
+		this.featuringName = featuringName;
+	}
+
+	public String getConditionName() {
+		return conditionName;
+	}
+
+	public void setConditionName(String conditionName) {
+		this.conditionName = conditionName;
+	}
+
+	public String getLocationName() {
+		return locationName;
+	}
+
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
+
+	public int getCondition() {
+		return condition;
+	}
+
+	public void setCondition(int condition) {
+		this.condition = condition;
+	}
 
 	public int getUserId() {
 		return userId;

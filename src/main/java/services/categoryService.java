@@ -76,6 +76,31 @@ public class categoryService {
 		return null;
 	}
 
+	public String getOneName(int categoryId) {
+
+		try {
+			PreparedStatement pst = con.prepareStatement("select * from category where categoryId = ?");
+
+			pst.setInt(1, categoryId);
+
+			ResultSet rs = pst.executeQuery();
+
+			Category category = new Category();
+
+			if (rs.next()) {
+				category.setCategoryId(rs.getInt("categoryId"));
+				category.setCategoryName(rs.getString("category"));
+
+				return category.getCategoryName();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	public boolean update(Category category) {
 
 		try {
