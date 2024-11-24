@@ -27,9 +27,11 @@
 				<button class="btn btn-inline menu-btn sidebar-btn">
 					<i class="fas fa-align-left"></i> <span>Menu</span>
 				</button>
-				<a href="login" class="btn btn-inline post-btn"> <i
-					class="fas fa-plus-circle"></i> <span>post your ad</span>
-				</a>
+				
+				<button type="button" class="btn btn-inline post-btn"
+					data-bs-toggle="modal" data-bs-target="#postadModal">
+					<i class="fas fa-plus-circle"></i> <span>post your ad</span>
+				</button>
 			</div>
 		</div>
 	</div>

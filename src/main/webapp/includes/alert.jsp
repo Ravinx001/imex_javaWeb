@@ -23,7 +23,8 @@ var validation = document.getElementById("validation").value;
 
 	if (status == "success" && validation != "null") {
 		Swal.fire({
-			title : "<%=request.getAttribute("validation")%>",
+			title : "<%=request.getAttribute("validation")%>
+	",
 			icon : "success"
 		});
 	}

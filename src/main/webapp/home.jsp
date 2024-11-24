@@ -304,8 +304,8 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="center-50">
-						<a href="allads" class="btn btn-inline"> <i
-							class="fas fa-eye"></i> <span>view all recommend</span>
+						<a href="allads" class="btn btn-inline"> <i class="fas fa-eye"></i>
+							<span>view all recommend</span>
 						</a>
 					</div>
 				</div>
@@ -436,6 +436,7 @@
 	<!--=====================================
                     FOOTER PART END
         =======================================-->
+	<jsp:include page="includes/addpostmodal.jsp" />
 	<jsp:include page="includes/alert.jsp" />
 
 	<!--=====================================
