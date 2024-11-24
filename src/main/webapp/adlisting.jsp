@@ -93,7 +93,8 @@
 										<li class="product-widget-item">
 											<div class="product-widget-checkbox">
 												<input type="checkbox" name="condition-nur" value="2"
-													id="chcek1" ${not empty requestScope.condition_nur && requestScope.condition_nur != -1 ? 'checked' : ''}>
+													id="chcek1"
+													${not empty requestScope.condition_nur && requestScope.condition_nur != -1 ? 'checked' : ''}>
 											</div> <label class="product-widget-label" for="chcek1"> <span
 												class="product-widget-type sale">Brand New - Un
 													Registered</span>
@@ -102,7 +103,8 @@
 										<li class="product-widget-item">
 											<div class="product-widget-checkbox">
 												<input type="checkbox" name="condition-ur" value="3"
-													id="chcek3" ${not empty requestScope.condition_ur && requestScope.condition_ur != -1 ? 'checked' : ''}>
+													id="chcek3"
+													${not empty requestScope.condition_ur && requestScope.condition_ur != -1 ? 'checked' : ''}>
 											</div> <label class="product-widget-label" for="chcek3"> <span
 												class="product-widget-type booking">Used - Registered</span>
 										</label>
@@ -110,7 +112,8 @@
 										<li class="product-widget-item">
 											<div class="product-widget-checkbox">
 												<input type="checkbox" name="condition-uur" value="4"
-													id="chcek4" ${not empty requestScope.condition_uur && requestScope.condition_uur != -1 ? 'checked' : ''}>
+													id="chcek4"
+													${not empty requestScope.condition_uur && requestScope.condition_uur != -1 ? 'checked' : ''}>
 											</div> <label class="product-widget-label" for="chcek4"> <span
 												class="product-widget-type manufac">Used - Un
 													Registered</span>
@@ -140,20 +143,19 @@
 								<c:forEach var="recomendedvehicle" items="${recomendedvehicles}">
 
 									<div class="feature-card">
-										<a href="#" class="feature-img"> <img
-											src="images/cars/car5.jpg" alt="feature">
+										<a href="viewadd?vehicleId=${recomendedvehicle.vehicleId}"
+											class="feature-img"> <img src="images/cars/car5.jpg"
+											alt="feature">
 										</a>
 										<div class="cross-inline-badge feature-badge">
 											<span>Recommended</span>
 										</div>
 										<div class="feature-content">
 											<ol class="breadcrumb feature-category">
-												<a href="">
-													<li><span class="flat-badge booking">${recomendedvehicle.conditionName}</span></li>
-												</a>
+												<li><span class="flat-badge booking">${recomendedvehicle.conditionName}</span></li>
 											</ol>
 											<h3 class="feature-title">
-												<a href="#">${recomendedvehicle.title}</a>
+												<a href="viewadd?vehicleId=${recomendedvehicle.vehicleId}">${recomendedvehicle.title}</a>
 											</h3>
 											<div class="feature-meta">
 												<span class="feature-price">LKR
