@@ -40,6 +40,7 @@ public class SingleAddServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
@@ -55,12 +56,14 @@ public class SingleAddServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		request.setAttribute("vehicle", vehicle);
 
 		dispatcher = request.getRequestDispatcher("singleAddView.jsp");
 		dispatcher.forward(request, response);
+		return;
 
 	}
 

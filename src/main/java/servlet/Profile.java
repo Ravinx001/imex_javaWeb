@@ -49,12 +49,14 @@ public class Profile extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 
 		} else if (uemail == null || uemail.equals("") || !matcher.matches()) {
 			request.setAttribute("validation", "Invalid Email !");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		} else {
 			userService service = new userService();
 
@@ -66,6 +68,7 @@ public class Profile extends HttpServlet {
 					request.setAttribute("status", "failed");
 
 					dispatcher.forward(request, response);
+					return;
 				}
 			}
 
@@ -74,12 +77,14 @@ public class Profile extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 
 			} else if ((!upwd.equals("")) && !upwd.equals(reupwd)) {
 				request.setAttribute("validation", "Invalid Re Enter Password !");
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else {
 				boolean status = false;
 
@@ -116,6 +121,7 @@ public class Profile extends HttpServlet {
 				}
 
 				dispatcher.forward(request, response);
+				return;
 			}
 
 		}

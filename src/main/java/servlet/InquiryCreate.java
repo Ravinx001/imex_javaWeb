@@ -16,12 +16,12 @@ import services.InquiryService;
 public class InquiryCreate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-//	@Override
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//	}
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		InquiryService inquiryService = new InquiryService();
+
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -74,7 +74,6 @@ public class InquiryCreate extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
-
 			return;
 		} else if (inquiry == null || inquiry.equals("") || inquiry.length() < 10 || inquiry.length() > 250) {
 			request.setAttribute("validation", "Invalid Inquiry Length !");

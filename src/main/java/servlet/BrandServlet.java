@@ -28,6 +28,7 @@ public class BrandServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("adminBrand.jsp");
 
 		dispatcher.forward(request, response);
+		return;
 	}
 
 	@Override
@@ -48,11 +49,13 @@ public class BrandServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		} else if (process == null || process.equals("")) {
 			request.setAttribute("validation", "Error");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		Brand brand = new Brand();
@@ -65,6 +68,7 @@ public class BrandServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		} else {
 
 			boolean status = service.createBrand(brand);
@@ -78,15 +82,15 @@ public class BrandServlet extends HttpServlet {
 				request.setAttribute("validation", "Brand Successfully Created !");
 
 				dispatcher.forward(request, response);
+				return;
 			} else {
 				request.setAttribute("status", "failed");
 				request.setAttribute("validation", "Brand Creation Failed !");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
-
-		dispatcher.forward(request, response);
 
 	}
 

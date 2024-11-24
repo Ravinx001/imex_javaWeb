@@ -29,6 +29,7 @@ public class CategoryServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("adminCategory.jsp");
 
 		dispatcher.forward(request, response);
+		return;
 	}
 
 	@Override
@@ -51,11 +52,13 @@ public class CategoryServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		} else if (process == null || process.equals("")) {
 			request.setAttribute("validation", "Error");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		Category category = new Category();
@@ -68,6 +71,7 @@ public class CategoryServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		} else {
 
 			boolean status = service.createCategory(category);
@@ -80,15 +84,15 @@ public class CategoryServlet extends HttpServlet {
 				request.setAttribute("validation", "Category Successfully Created !");
 
 				dispatcher.forward(request, response);
+				return;
 			} else {
 				request.setAttribute("status", "failed");
 				request.setAttribute("validation", "Category Creation Failed !");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
-
-		dispatcher.forward(request, response);
 
 	}
 

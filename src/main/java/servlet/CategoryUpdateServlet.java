@@ -30,6 +30,7 @@ public class CategoryUpdateServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		categoryService service = new categoryService();
@@ -41,6 +42,7 @@ public class CategoryUpdateServlet extends HttpServlet {
 		request.setAttribute("category", category);
 
 		dispatcher.forward(request, response);
+		return;
 
 	}
 
@@ -71,16 +73,19 @@ public class CategoryUpdateServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else if (process == null || process.equals("")) {
 				request.setAttribute("validation", "Error");
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else if (categoryId == 0) {
 				request.setAttribute("validation", "Error");
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 
 			Category category = new Category();
@@ -94,6 +99,7 @@ public class CategoryUpdateServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else {
 
 				boolean status = service.update(category);
@@ -110,11 +116,13 @@ public class CategoryUpdateServlet extends HttpServlet {
 					request.setAttribute("validation", "Category Successfully Updated !");
 
 					dispatcher.forward(request, response);
+					return;
 				} else {
 					request.setAttribute("status", "failed");
 					request.setAttribute("validation", "Category Updation Failed !");
 
 					dispatcher.forward(request, response);
+					return;
 				}
 			}
 
@@ -125,11 +133,13 @@ public class CategoryUpdateServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else if (categoryId == 0) {
 				request.setAttribute("validation", "Error");
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 
 			Category category = new Category();
@@ -147,11 +157,13 @@ public class CategoryUpdateServlet extends HttpServlet {
 				request.setAttribute("validation", "Category Successfully Deleted !");
 
 				dispatcher.forward(request, response);
+				return;
 			} else {
 				request.setAttribute("status", "failed");
 				request.setAttribute("validation", "Category Deletion Failed !");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 
 		} else {
@@ -159,6 +171,7 @@ public class CategoryUpdateServlet extends HttpServlet {
 			request.setAttribute("validation", "Category Deletion Failed !");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 	}

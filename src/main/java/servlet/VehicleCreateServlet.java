@@ -67,6 +67,7 @@ public class VehicleCreateServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("adminVehicleCreate.jsp");
 
 		dispatcher.forward(request, response);
+		return;
 	}
 
 	@Override
@@ -156,12 +157,12 @@ public class VehicleCreateServlet extends HttpServlet {
 //			request.setAttribute("validation", "Invalid Title !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if (titleStatus) {
 //			request.setAttribute("validation", "This Title is Unavailabe !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("manufactureYear").isEmpty()
 //				|| request.getParameter("manufactureYear") != null
 //				|| !request.getParameter("manufactureYear").equals(""))
@@ -170,102 +171,102 @@ public class VehicleCreateServlet extends HttpServlet {
 //			request.setAttribute("validation", "Invalid Year !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("price").isEmpty() || request.getParameter("price") != null
 //				|| !request.getParameter("price").equals(""))
 //				&& (price < 0 || !isDouble.isDouble(request.getParameter("price")))) {
 //			request.setAttribute("validation", "Invalid Price !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("model").isEmpty() || request.getParameter("model") != null
 //				|| !request.getParameter("model").equals("")) && (model.length() < 2 || model.length() > 50)) {
 //			request.setAttribute("validation", "Invalid Modal !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("modelVariant").isEmpty() || request.getParameter("modelVariant") != null
 //				|| !request.getParameter("modelVariant").equals(""))
 //				&& (modelVariant.length() < 2 || modelVariant.length() > 50)) {
 //			request.setAttribute("validation", "Invalid Modal Variant !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("mileage").isEmpty() || request.getParameter("mileage") != null
 //				|| !request.getParameter("mileage").equals("")) && (mileage.length() < 2 || mileage.length() > 50)) {
 //			request.setAttribute("validation", "Invalid Mileage !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("engineCapacity").isEmpty() || request.getParameter("engineCapacity") != null
 //				|| !request.getParameter("engineCapacity").equals(""))
 //				&& (engineCapacity.length() < 2 || engineCapacity.length() > 45)) {
 //			request.setAttribute("validation", "Invalid Engine Capacity !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("description").isEmpty() || request.getParameter("description") != null
 //				|| !request.getParameter("description").equals(""))
 //				&& (description.length() < 2 || description.length() > 2000)) {
 //			request.setAttribute("validation", "Invalid Description !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if (!request.getParameter("category").isEmpty() || request.getParameter("category") != null
 //				|| !request.getParameter("category").equals("")) {
 //			request.setAttribute("validation", "Select a Category !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if (!request.getParameter("brand").isEmpty() || request.getParameter("brand") != null
 //				|| !request.getParameter("brand").equals("")) {
 //			request.setAttribute("validation", "This Brand is Unavailabe !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if (!categoryStatus) {
 //			request.setAttribute("validation", "Select a Brand !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if (!brandStatus) {
 //			request.setAttribute("validation", "This Brand is Unavailabe !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("fuelType").isEmpty() && request.getParameter("fuelType") != null
 //				|| !request.getParameter("fuelType").equals("")) && !fuelTypeStatus) {
 //			request.setAttribute("validation", "This Fuel Type is Unavailabe !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("transmission").isEmpty() && request.getParameter("transmission") != null
 //				|| !request.getParameter("transmission").equals("")) && !transmissionStatus) {
 //			request.setAttribute("validation", "This Transmission is Unavailabe !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if (!featuringStatus) {
 //			request.setAttribute("validation", "This Featuring is Unavailabe !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if (!locationStatus) {
 //			request.setAttribute("validation", "This Location is Unavailabe !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if ((!request.getParameter("condition").isEmpty() && request.getParameter("condition") != null
 //				|| !request.getParameter("condition").equals("")) && !conditionStatus) {
 //			request.setAttribute("validation", "This Condition is Unavailabe !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		} else if (!userStatus) {
 //			request.setAttribute("validation", "This Invalid User Id !");
 //			request.setAttribute("status", "failed");
 //
-//			dispatcher.forward(request, response);
+//			dispatcher.forward(request, response); return;
 //		}
 
 		System.out.println("Title: " + title);
@@ -319,11 +320,13 @@ public class VehicleCreateServlet extends HttpServlet {
 			request.setAttribute("validation", "Vehicle Advertisement Successfully Created !");
 
 			dispatcher.forward(request, response);
+			return;
 		} else {
 			request.setAttribute("status", "failed");
 			request.setAttribute("validation", "Vehicle Advertisement Creation Failed !");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 	}

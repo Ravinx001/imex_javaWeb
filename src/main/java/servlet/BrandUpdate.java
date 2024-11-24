@@ -31,6 +31,7 @@ public class BrandUpdate extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		brandService service = new brandService();
@@ -42,6 +43,7 @@ public class BrandUpdate extends HttpServlet {
 		request.setAttribute("brand", brand);
 
 		dispatcher.forward(request, response);
+		return;
 
 	}
 
@@ -70,16 +72,19 @@ public class BrandUpdate extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else if (process == null || process.equals("")) {
 				request.setAttribute("validation", "Error");
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else if (brandId == 0) {
 				request.setAttribute("validation", "Error");
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 
 			Brand brand = new Brand();
@@ -93,6 +98,7 @@ public class BrandUpdate extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else {
 
 				boolean status = service.update(brand);
@@ -106,11 +112,13 @@ public class BrandUpdate extends HttpServlet {
 					request.setAttribute("validation", "Brand Successfully Updated !");
 
 					dispatcher.forward(request, response);
+					return;
 				} else {
 					request.setAttribute("status", "failed");
 					request.setAttribute("validation", "Brand Updation Failed !");
 
 					dispatcher.forward(request, response);
+					return;
 				}
 			}
 
@@ -121,11 +129,13 @@ public class BrandUpdate extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			} else if (brandId == 0) {
 				request.setAttribute("validation", "Error");
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 
 			Brand brand = new Brand();
@@ -143,11 +153,13 @@ public class BrandUpdate extends HttpServlet {
 				request.setAttribute("validation", "Brand Successfully Deleted !");
 
 				dispatcher.forward(request, response);
+				return;
 			} else {
 				request.setAttribute("status", "failed");
 				request.setAttribute("validation", "Brand Deletion Failed !");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 
 		} else {
@@ -155,6 +167,7 @@ public class BrandUpdate extends HttpServlet {
 			request.setAttribute("validation", "Brand Deletion Failed !");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 	}

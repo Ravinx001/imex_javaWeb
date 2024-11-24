@@ -47,6 +47,7 @@ public class Login extends HttpServlet {
 
 			dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
+			return;
 
 		} else if (upwd == null || upwd.equals("") || upwd.length() < 8 || upwd.length() > 50) {
 			request.setAttribute("validation", "Invalid Password !");
@@ -54,6 +55,7 @@ public class Login extends HttpServlet {
 
 			dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		Hashing hash = new Hashing();
@@ -84,6 +86,7 @@ public class Login extends HttpServlet {
 		}
 
 		dispatcher.forward(request, response);
+		return;
 
 	}
 

@@ -28,6 +28,7 @@ public class VehicleServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("adminVehicle.jsp");
 
 		dispatcher.forward(request, response);
+		return;
 	}
 
 //	@Override
