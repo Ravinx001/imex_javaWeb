@@ -1,4 +1,3 @@
-
 <input type="hidden" id="status"
 	value="<%=request.getAttribute("status")%>">
 <input type="hidden" id="validation"
@@ -19,13 +18,14 @@ var validation = document.getElementById("validation").value;
 			title : "<%=request.getAttribute("validation")%>",
 			icon : "error"
 		});
+		
 	}
 
 	if (status == "success" && validation != "null") {
 		Swal.fire({
-			title : "<%=request.getAttribute("validation")%>
-	",
+			title : "<%=request.getAttribute("validation")%>",
 			icon : "success"
 		});
+		
 	}
 </script>

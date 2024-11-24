@@ -436,7 +436,6 @@
 	<!--=====================================
                     FOOTER PART END
         =======================================-->
-	<jsp:include page="includes/addpostmodal.jsp" />
 	<jsp:include page="includes/alert.jsp" />
 
 	<!--=====================================

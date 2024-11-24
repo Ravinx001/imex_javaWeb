@@ -321,7 +321,6 @@
 		</div>
 	</footer>
 
-	<jsp:include page="includes/addpostmodal.jsp" />
 	<jsp:include page="includes/alert.jsp" />
 	<!--=====================================
                         FOOTER PART END

@@ -16,12 +16,12 @@ import services.InquiryService;
 public class InquiryCreate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+//	@Override
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+//	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,14 +35,18 @@ public class InquiryCreate extends HttpServlet {
 		String email = request.getParameter("email");
 		String mobile = request.getParameter("mobile");
 		String inquiry = request.getParameter("inquiry");
+		boolean status = false;
 
 		// Validate vehicleId (must be a valid integer)
 		if (request.getParameter("vehicleId") == null || request.getParameter("vehicleId").equals("")
 				|| !request.getParameter("vehicleId").matches("\\d+")) {
+
 			request.setAttribute("validation", "Error !");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+
+			return;
 		}
 
 		int vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
@@ -55,31 +59,40 @@ public class InquiryCreate extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
-		}
 
-		// Validate email (simple regex for email format)
-		if (email == null || email.equals("") || !email.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+			return;
+		} else if (email == null || email.equals("") || !email.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
 			request.setAttribute("validation", "Invalid Email !");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
-		}
 
-		// Validate mobile (Sri Lankan numbers: start with valid prefixes and have 10
-		// digits)
-		if (mobile == null || mobile.equals("") || !mobile.matches("^(070|071|072|075|076|077|078|079)\\d{7}$")) {
+			return;
+		} else if (mobile == null || mobile.equals("")
+				|| !mobile.matches("^(070|071|072|075|076|077|078|079)\\d{7}$")) {
 			request.setAttribute("validation", "Invalid Mobile !");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
-		}
 
-		// Validate inquiry
-		if (inquiry == null || inquiry.equals("") || inquiry.length() < 10 || inquiry.length() > 250) {
+			return;
+		} else if (inquiry == null || inquiry.equals("") || inquiry.length() < 10 || inquiry.length() > 250) {
 			request.setAttribute("validation", "Invalid Inquiry Length !");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+
+			return;
+		} else {
+			Inquiry inquiryObject = new Inquiry();
+
+			inquiryObject.setVehicleId(vehicleId);
+			inquiryObject.setCustomerName(name);
+			inquiryObject.setCustomerEmail(email);
+			inquiryObject.setCustomerMobile(mobile);
+			inquiryObject.setInquiry(inquiry);
+
+			status = inquiryService.createInquiry(inquiryObject);
 		}
 
 		System.out.println("Name: " + request.getParameter("name"));
@@ -88,26 +101,20 @@ public class InquiryCreate extends HttpServlet {
 		System.out.println("Inquiry: " + request.getParameter("inquiry"));
 		System.out.println("VehicleId: " + request.getParameter("vehicleId"));
 
-		Inquiry inquiryObject = new Inquiry();
-
-		inquiryObject.setVehicleId(vehicleId);
-		inquiryObject.setCustomerName(name);
-		inquiryObject.setCustomerEmail(email);
-		inquiryObject.setCustomerMobile(mobile);
-		inquiryObject.setInquiry(inquiry);
-
-		boolean status = inquiryService.createInquiry(inquiryObject);
-
 		if (status) {
 			request.setAttribute("validation", "Inquiry Successfully Created !");
 			request.setAttribute("status", "success");
 
 			dispatcher.forward(request, response);
+
+			return;
 		} else {
 			request.setAttribute("validation", "Inquiry Sending Failed!");
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+
+			return;
 		}
 
 	}

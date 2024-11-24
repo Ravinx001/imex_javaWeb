@@ -166,7 +166,7 @@
 							<h5 class="card-title">Contact Seller</h5>
 						</div>
 						<div class="ad-details-review">
-							<form action="inquiry" method="post">
+							<form action="inquiry" method="POST">
 								<div class="row">
 									<div class="col-12 col-lg-4 p-3">
 										<input required type="text" name="name" class="form-control"
@@ -353,7 +353,6 @@
                         FOOTER PART END
             =======================================-->
 
-	<jsp:include page="includes/addpostmodal.jsp" />
 	<jsp:include page="includes/alert.jsp" />
 
 	<!--=====================================

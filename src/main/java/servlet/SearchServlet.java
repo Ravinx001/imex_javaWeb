@@ -34,6 +34,7 @@ public class SearchServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("adlisting.jsp");
 
 		dispatcher.forward(request, response);
+		return;
 	}
 
 	@Override
@@ -52,12 +53,13 @@ public class SearchServlet extends HttpServlet {
 		searchService searchService = new searchService();
 
 		ArrayList<Vehicle> recomendedVehicles = vehicleService.getAllRecommendedVehicles();
-		request.setAttribute("recomendedvehicles", recomendedVehicles);
 
 		ArrayList<Vehicle> allVehicles = searchService.getAllVehicles();
 
 		IsInt isInt = new IsInt();
 		RequestDispatcher dispatcher = request.getRequestDispatcher("adlisting.jsp");
+		request.setAttribute("recomendedvehicles", recomendedVehicles);
+		request.setAttribute("allvehicles", allVehicles);
 
 		if (!request.getParameter("title").equals("")
 				&& (request.getParameter("title").length() < 2 || request.getParameter("title").length() > 100)) {
@@ -65,6 +67,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		if (!request.getParameter("price-min").equals("") && !isInt.isInt(request.getParameter("price-min"))) {
@@ -72,6 +75,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		if (!request.getParameter("price-max").equals("") && !isInt.isInt(request.getParameter("price-max"))) {
@@ -79,6 +83,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		if (!isInt.isInt(request.getParameter("condition-nr")) && request.getParameter("condition-nr") != null) {
@@ -86,6 +91,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		if (!isInt.isInt(request.getParameter("condition-nur")) && request.getParameter("condition-nur") != null) {
@@ -93,6 +99,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		if (!isInt.isInt(request.getParameter("condition-ur")) && request.getParameter("condition-ur") != null) {
@@ -100,6 +107,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		if (!isInt.isInt(request.getParameter("condition-uur")) && request.getParameter("condition-uur") != null) {
@@ -107,6 +115,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("status", "failed");
 
 			dispatcher.forward(request, response);
+			return;
 		}
 
 		String title = null;
@@ -129,6 +138,7 @@ public class SearchServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
 
@@ -140,6 +150,7 @@ public class SearchServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
 
@@ -149,6 +160,7 @@ public class SearchServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
 
@@ -160,6 +172,7 @@ public class SearchServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
 
@@ -171,6 +184,7 @@ public class SearchServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
 
@@ -182,6 +196,7 @@ public class SearchServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
 
@@ -193,6 +208,7 @@ public class SearchServlet extends HttpServlet {
 				request.setAttribute("status", "failed");
 
 				dispatcher.forward(request, response);
+				return;
 			}
 		}
 
@@ -233,6 +249,7 @@ public class SearchServlet extends HttpServlet {
 		System.out.println("Condition-uur: " + condition_uur);
 
 		dispatcher.forward(request, response);
+		return;
 
 	}
 
