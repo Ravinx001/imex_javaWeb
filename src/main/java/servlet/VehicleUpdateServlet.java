@@ -33,8 +33,8 @@ import services.vehicleService;
 import utils.IsDouble;
 import utils.IsInt;
 
-@WebServlet("/vehiclecreate")
-public class VehicleCreateServlet extends HttpServlet {
+@WebServlet("/vehicleupdate")
+public class VehicleUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -47,6 +47,22 @@ public class VehicleCreateServlet extends HttpServlet {
 		conditionService conditionService = new conditionService();
 		featuringService featuringService = new featuringService();
 		locationService locationService = new locationService();
+		vehicleService vehicleservice = new vehicleService();
+
+		IsInt isInt = new IsInt();
+		int vehicleId = 0;
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("vehiclecreate");
+
+		if (!isInt.isInt(request.getParameter("vehicleId"))) {
+			request.setAttribute("validation", "Error");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+			return;
+		} else {
+			vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
+		}
 
 		ArrayList<Category> categories = categoryService.getAllCategories();
 		request.setAttribute("categories", categories);
@@ -69,7 +85,12 @@ public class VehicleCreateServlet extends HttpServlet {
 		ArrayList<Featuring> featurings = featuringService.getAllFeaturings();
 		request.setAttribute("featurings", featurings);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("adminVehicleCreate.jsp");
+		Vehicle vehicle = new Vehicle();
+		vehicle = vehicleservice.getOne(vehicleId);
+
+		request.setAttribute("vehicle", vehicle);
+
+		dispatcher = request.getRequestDispatcher("adminVehicleUpdate.jsp");
 
 		dispatcher.forward(request, response);
 		return;
@@ -79,6 +100,11 @@ public class VehicleCreateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		IsInt isInt = new IsInt();
+		int vehicleId = 0;
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("vehicle");
+
 		categoryService categoryService = new categoryService();
 		brandService brandService = new brandService();
 		fuelTypeService fuelTypeService = new fuelTypeService();
@@ -86,6 +112,9 @@ public class VehicleCreateServlet extends HttpServlet {
 		conditionService conditionService = new conditionService();
 		featuringService featuringService = new featuringService();
 		locationService locationService = new locationService();
+		vehicleService vehicleservice = new vehicleService();
+
+		Vehicle vehicle = new Vehicle();
 
 		ArrayList<Category> categories = categoryService.getAllCategories();
 		request.setAttribute("categories", categories);
@@ -108,7 +137,19 @@ public class VehicleCreateServlet extends HttpServlet {
 		ArrayList<Featuring> featurings = featuringService.getAllFeaturings();
 		request.setAttribute("featurings", featurings);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("adminVehicleCreate.jsp");
+		if (!isInt.isInt(request.getParameter("vehicleId")) || request.getParameter("vehicleId").equals("")) {
+			request.setAttribute("validation", "Error");
+			request.setAttribute("status", "failed");
+
+			dispatcher.forward(request, response);
+			return;
+		} else {
+			vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
+		}
+
+		vehicle = vehicleservice.getOne(vehicleId);
+
+		dispatcher = request.getRequestDispatcher("vehicleupdate?vehicleId=" + vehicleId);
 
 		HttpSession session = request.getSession();
 
@@ -116,7 +157,6 @@ public class VehicleCreateServlet extends HttpServlet {
 		validateService validateservice = new validateService();
 
 		IsDouble isDouble = new IsDouble();
-		IsInt isInt = new IsInt();
 		ZonedDateTime nowInSriLanka = ZonedDateTime.now(ZoneId.of("Asia/Colombo"));
 		int currentYear = nowInSriLanka.getYear();
 		int userId = (int) session.getAttribute("userId");
@@ -177,6 +217,7 @@ public class VehicleCreateServlet extends HttpServlet {
 		boolean conditionStatus = validateservice.validateConditionWithId(condition);
 		boolean userStatus = validateservice.validateUserWithId(userId);
 
+		System.out.println("titleStatus: " + titleStatus);
 		System.out.println("categoryStatus: " + categoryStatus);
 		System.out.println("brandStatus: " + brandStatus);
 		System.out.println("fuelTypeStatus: " + fuelTypeStatus);
@@ -190,106 +231,106 @@ public class VehicleCreateServlet extends HttpServlet {
 			request.setAttribute("validation", "Invalid Title !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
-		} else if (titleStatus) {
+		} else if (titleStatus && !title.equals(vehicle.getTitle())) {
 			request.setAttribute("validation", "This Title is Unavailabe !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (price != 0.00 && price < 0) {
 			request.setAttribute("validation", "Invalid Price !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if ((manufactureYear != 0) && (manufactureYear > currentYear)) {
 			request.setAttribute("validation", "Invalid Year !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("model").equals("")) && (model.length() < 2 || model.length() > 50)) {
 			request.setAttribute("validation", "Invalid Model !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("modelVariant").equals(""))
 				&& (modelVariant.length() < 2 || modelVariant.length() > 50)) {
 			request.setAttribute("validation", "Invalid Modal Variant !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("mileage").equals("")) && (mileage.length() < 2 || mileage.length() > 50)) {
 			request.setAttribute("validation", "Invalid Mileage !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("engineCapacity").equals(""))
 				&& (engineCapacity.length() < 2 || engineCapacity.length() > 45)) {
 			request.setAttribute("validation", "Invalid Engine Capacity !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("description").equals(""))
 				&& (description.length() < 2 || description.length() > 2000)) {
 			request.setAttribute("validation", "Invalid Description !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (!categoryStatus) {
 			request.setAttribute("validation", "Select Category is Unavailabe !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (!brandStatus) {
 			request.setAttribute("validation", "This Brand is Unavailabe !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (!fuelTypeStatus) {
 			request.setAttribute("validation", "This Fuel Type is Unavailabe !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (!transmissionStatus) {
 			request.setAttribute("validation", "This Transmission is Unavailabe !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (!featuringStatus) {
 			request.setAttribute("validation", "This Featuring is Unavailabe !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (!locationStatus) {
 			request.setAttribute("validation", "This Location is Unavailabe !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (!conditionStatus) {
 			request.setAttribute("validation", "This Condition is Unavailabe !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		} else if (!userStatus) {
 			request.setAttribute("validation", "This Invalid User Id !");
 			request.setAttribute("status", "failed");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		}
 
@@ -311,8 +352,6 @@ public class VehicleCreateServlet extends HttpServlet {
 		System.out.println("featuring: " + featuring);
 		System.out.println("userId: " + userId);
 
-		Vehicle vehicle = new Vehicle();
-
 		vehicle.setTitle(title);
 		vehicle.setPrice(price);
 		vehicle.setManufactureYear(manufactureYear);
@@ -329,8 +368,9 @@ public class VehicleCreateServlet extends HttpServlet {
 		vehicle.setCondition(condition);
 		vehicle.setFeaturing(featuring);
 		vehicle.setUserId(userId);
+		vehicle.setVehicleId(vehicleId);
 
-		boolean status = service.createVehicle(vehicle);
+		boolean status = service.update(vehicle);
 
 		System.out.println("status: " + status);
 
@@ -342,18 +382,17 @@ public class VehicleCreateServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("adminVehicle.jsp");
 
 			request.setAttribute("status", "success");
-			request.setAttribute("validation", "Vehicle Advertisement Successfully Created !");
+			request.setAttribute("validation", "Vehicle Advertisement Successfully Updated !");
 
 			dispatcher.forward(request, response);
 			return;
 		} else {
 			request.setAttribute("status", "failed");
-			request.setAttribute("validation", "Vehicle Advertisement Creation Failed !");
+			request.setAttribute("validation", "Vehicle Advertisement Update Failed !");
 
-			dispatcher.forward(request, response);
+			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
 			return;
 		}
-
 	}
 
 }

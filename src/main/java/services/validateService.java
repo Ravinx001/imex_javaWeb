@@ -144,7 +144,7 @@ public class validateService {
 
 	public boolean validateUserWithId(int id) {
 		try {
-			PreparedStatement pst = con.prepareStatement("select * from user where userId = ?");
+			PreparedStatement pst = con.prepareStatement("select * from users where userId = ?");
 
 			pst.setInt(1, id);
 

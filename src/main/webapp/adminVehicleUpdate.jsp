@@ -42,42 +42,48 @@ if (session.getAttribute("userId") == null) {
 
 				<div class="col-12 px-lg-5 pb-3">
 
-					<form action="vehiclecreate" method="POST" class="row g-3">
+					<form action="vehicleupdate" method="POST" class="row g-3">
 
 						<div class="col-md-12">
 							<label for="exampleFormControlInput1" class="form-label">Title</label>
-							<input required type="text" class="form-control"
-								id="exampleFormControlInput1" name="title">
+							<input value="${vehicle.title}" required type="text"
+								class="form-control" id="exampleFormControlInput1" name="title">
+							<input value="${vehicle.vehicleId}" required type="hidden"
+								class="form-control" id="exampleFormControlInput1" name="vehicleId">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Price</label>
-							<input type="text" class="form-control"
+							<input value="${vehicle.price}" type="text" class="form-control"
 								id="exampleFormControlInput1" name="vehicleprice">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Manufacture
-								Year</label> <input type="number" class="form-control"
-								id="exampleFormControlInput1" name="manufactureYear">
+								Year</label> <input value="${vehicle.manufactureYear}" type="number"
+								class="form-control" id="exampleFormControlInput1"
+								name="manufactureYear">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Model</label>
-							<input type="text" class="form-control"
+							<input value="${vehicle.model}" type="text" class="form-control"
 								id="exampleFormControlInput1" name="model">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Model
-								Variant</label> <input type="text" class="form-control"
-								id="exampleFormControlInput1" name="modelVariant">
+								Variant</label> <input type="text" value="${vehicle.modelVariant}"
+								class="form-control" id="exampleFormControlInput1"
+								name="modelVariant">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Mileage</label>
-							<input type="text" class="form-control"
-								id="exampleFormControlInput1" name="mileage">
+							<input value="${vehicle.mileage}" type="text"
+								class="form-control" id="exampleFormControlInput1"
+								name="mileage">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Engine
 								Capacity</label> <input type="text" class="form-control"
-								id="exampleFormControlInput1" name="engineCapacity">
+								id="exampleFormControlInput1" name="engineCapacity"
+								value="${vehicle.engineCapacity}">
 						</div>
 						<div class="col-md-4">
 							<label for="formFileMultiple" class="form-label">Category</label>
@@ -85,7 +91,9 @@ if (session.getAttribute("userId") == null) {
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Category</option>
 								<c:forEach var="category" items="${categories}">
-									<option value="${category.categoryId}">${category.categoryName}</option>
+									<option
+										${vehicle.categotry == category.categoryId ? 'selected' : ''}
+										value="${category.categoryId}">${category.categoryName}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -102,7 +110,9 @@ if (session.getAttribute("userId") == null) {
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select a Fuel Type</option>
 								<c:forEach var="fuelType" items="${fuelTypes}">
-									<option value="${fuelType.fuelTypeId}">${fuelType.fuelType}</option>
+									<option
+										${vehicle.fueltype == fuelType.fuelTypeId ? 'selected' : ''}
+										value="${fuelType.fuelTypeId}">${fuelType.fuelType}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -112,7 +122,8 @@ if (session.getAttribute("userId") == null) {
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Brand</option>
 								<c:forEach var="brand" items="${brands}">
-									<option value="${brand.brandId}">${brand.brandName}</option>
+									<option ${vehicle.brand == brand.brandId ? 'selected' : ''}
+										value="${brand.brandId}">${brand.brandName}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -127,10 +138,13 @@ if (session.getAttribute("userId") == null) {
 						<div class="col-md-4">
 							<label for="formFileMultiple" class="form-label">Transmission
 								Type</label> <select name="transmission" class="form-select"
-								id="transmission" aria-describedby="validationServer04Feedback" required>
+								id="transmission" aria-describedby="validationServer04Feedback"
+								required>
 								<option value="">Select the Transmission</option>
 								<c:forEach var="transmission" items="${transmissions}">
-									<option value="${transmission.transmissionId}">${transmission.transmission}</option>
+									<option
+										${vehicle.transmission == transmission.transmissionId ? 'selected' : ''}
+										value="${transmission.transmissionId}">${transmission.transmission}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -140,7 +154,9 @@ if (session.getAttribute("userId") == null) {
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Condition</option>
 								<c:forEach var="condition" items="${conditions}">
-									<option value="${condition.conditionId}">${condition.condition}</option>
+									<option
+										${vehicle.condition == condition.conditionId ? 'selected' : ''}
+										value="${condition.conditionId}">${condition.condition}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -150,7 +166,9 @@ if (session.getAttribute("userId") == null) {
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the Ad Featuring</option>
 								<c:forEach var="featuring" items="${featurings}">
-									<option value="${featuring.featuringId}">${featuring.featuring}</option>
+									<option
+										${vehicle.featuring == featuring.featuringId ? 'selected' : ''}
+										value="${featuring.featuringId}">${featuring.featuring}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -160,17 +178,19 @@ if (session.getAttribute("userId") == null) {
 								aria-describedby="validationServer04Feedback" required>
 								<option value="">Select the location</option>
 								<c:forEach var="location" items="${locations}">
-									<option value="${location.locationId}">${location.location}</option>
+									<option
+										${vehicle.location == location.locationId ? 'selected' : ''}
+										value="${location.locationId}">${location.location}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-12">
 							<textarea class="form-control" placeholder="Description"
-								id="floatingTextarea2" rows="10" name="description"></textarea>
+								id="floatingTextarea2" rows="10" name="description">${vehicle.description}</textarea>
 						</div>
 
 						<div class="col-md-12 mb-3">
-							<button type="submit" class="btn btn-primary">Create</button>
+							<button type="submit" class="btn btn-primary">Update</button>
 						</div>
 
 					</form>

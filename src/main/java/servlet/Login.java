@@ -75,18 +75,25 @@ public class Login extends HttpServlet {
 			session.setAttribute("name", loggedUser.getName());
 			session.setAttribute("email", loggedUser.getEmail());
 			session.setAttribute("password", loggedUser.getPassword());
+
 			request.setAttribute("status", "success");
 
-			dispatcher = request.getRequestDispatcher("inquiry");
+			System.out.println("userId: " + loggedUser.getUserId());
+			System.out.println("name: " + loggedUser.getName());
+			System.out.println("email: " + loggedUser.getEmail());
+			System.out.println("password: " + loggedUser.getPassword());
+
+			// Redirect to the InquiryCreate servlet
+			response.sendRedirect("inquiry");
+
+			return;
 
 		} else {
 			request.setAttribute("status", "failed");
 			request.setAttribute("validation", "Invalid Email or Password !");
 			dispatcher = request.getRequestDispatcher("login.jsp");
+			return;
 		}
-
-		dispatcher.forward(request, response);
-		return;
 
 	}
 

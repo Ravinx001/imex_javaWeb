@@ -15,23 +15,52 @@ public class vehicleService {
 	public boolean createVehicle(Vehicle vehicle) {
 
 		try {
-			PreparedStatement pst = con.prepareStatement("insert into brand values(0,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement pst = con
+					.prepareStatement("insert into vehicle values(0,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 			pst.setString(1, vehicle.getTitle());
-			pst.setDouble(2, vehicle.getPrice());
+
+			if (vehicle.getPrice() == 0.0) {
+				pst.setString(2, "NULL");
+			} else {
+				pst.setDouble(2, vehicle.getPrice());
+			}
+
 			pst.setInt(3, vehicle.getManufactureYear());
 			pst.setString(4, vehicle.getModel());
 			pst.setString(5, vehicle.getModelVariant());
 			pst.setString(6, vehicle.getMileage());
 			pst.setString(7, vehicle.getEngineCapacity());
 			pst.setString(8, vehicle.getDescription());
-			pst.setInt(9, vehicle.getLocation());
-			pst.setInt(10, vehicle.getCategotry());
-			pst.setInt(11, vehicle.getBrand());
-			pst.setInt(12, vehicle.getFueltype());
-			pst.setInt(13, vehicle.getTransmission());
-			pst.setInt(14, vehicle.getFeaturing());
-			pst.setInt(15, vehicle.getUserId());
+			pst.setInt(9, vehicle.getCategotry());
+			pst.setInt(10, vehicle.getBrand());
+			pst.setInt(11, vehicle.getFueltype());
+			pst.setInt(12, vehicle.getTransmission());
+			pst.setInt(13, vehicle.getFeaturing());
+			pst.setInt(14, vehicle.getUserId());
+			pst.setInt(15, vehicle.getLocation());
+			pst.setInt(16, vehicle.getCondition());
+
+			System.out.println("----------- ------------ ----------");
+			System.out.println("----------- ------------ ----------");
+			System.out.println("----------- ------------ ----------");
+			System.out.println("Title: " + vehicle.getTitle());
+			System.out.println("Price: " + vehicle.getPrice());
+			System.out.println("manufactureYear: " + vehicle.getManufactureYear());
+			System.out.println("model: " + vehicle.getModel());
+			System.out.println("modelVariant: " + vehicle.getModelVariant());
+			System.out.println("mileage: " + vehicle.getMileage());
+			System.out.println("engineCapacity: " + vehicle.getEngineCapacity());
+			System.out.println("description: " + vehicle.getDescription());
+			System.out.println("Location: " + vehicle.getLocation());
+			System.out.println("category: " + vehicle.getCategotry());
+			System.out.println("brand: " + vehicle.getBrand());
+			System.out.println("fuelType: " + vehicle.getFueltype());
+			System.out.println("transmission: " + vehicle.getTransmission());
+			System.out.println("condition: " + vehicle.getCondition());
+			System.out.println("featuring: " + vehicle.getFeaturing());
+			System.out.println("userId: " + vehicle.getUserId());
+			System.out.println("query: " + pst);
 
 			int rowCount = pst.executeUpdate();
 
@@ -121,7 +150,7 @@ public class vehicleService {
 
 		try {
 			PreparedStatement pst = con.prepareStatement(
-					"update vehicle set title = ?, price = ?, manufactureYear = ?, model = ?, modelVariant = ?, mileage = ?, engineCapacity = ?, description = ?, location = ?, categoryId = ?, brandId = ?, fuelTypeId = ?, transmissionId = ?, featuringId = ?, userId = ? where vehicleId = ?");
+					"update vehicle set title = ?, price = ?, manufactureYear = ?, model = ?, modelVariant = ?, mileage = ?, engineCapacity = ?, description = ?, locationId = ?, categoryId = ?, brandId = ?, fuelTypeId = ?, transmissionId = ?, featuringId = ?, userId = ?, conditionId = ? where vehicleId = ?");
 
 			pst.setString(1, vehicle.getTitle());
 			pst.setDouble(2, vehicle.getPrice());
@@ -138,7 +167,29 @@ public class vehicleService {
 			pst.setInt(13, vehicle.getTransmission());
 			pst.setInt(14, vehicle.getFeaturing());
 			pst.setInt(15, vehicle.getUserId());
-			pst.setInt(16, vehicle.getVehicleId());
+			pst.setInt(16, vehicle.getCondition());
+			pst.setInt(17, vehicle.getVehicleId());
+
+			System.out.println("----------- ------------ ----------");
+			System.out.println("----------- ------------ ----------");
+			System.out.println("----------- ------------ ----------");
+			System.out.println("Title: " + vehicle.getTitle());
+			System.out.println("Price: " + vehicle.getPrice());
+			System.out.println("manufactureYear: " + vehicle.getManufactureYear());
+			System.out.println("model: " + vehicle.getModel());
+			System.out.println("modelVariant: " + vehicle.getModelVariant());
+			System.out.println("mileage: " + vehicle.getMileage());
+			System.out.println("engineCapacity: " + vehicle.getEngineCapacity());
+			System.out.println("description: " + vehicle.getDescription());
+			System.out.println("Location: " + vehicle.getLocation());
+			System.out.println("category: " + vehicle.getCategotry());
+			System.out.println("brand: " + vehicle.getBrand());
+			System.out.println("fuelType: " + vehicle.getFueltype());
+			System.out.println("transmission: " + vehicle.getTransmission());
+			System.out.println("condition: " + vehicle.getCondition());
+			System.out.println("featuring: " + vehicle.getFeaturing());
+			System.out.println("userId: " + vehicle.getUserId());
+			System.out.println("query: " + pst);
 
 			int rowCount = pst.executeUpdate();
 
