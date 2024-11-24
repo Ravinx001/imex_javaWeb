@@ -92,7 +92,12 @@ if (session.getAttribute("userId") == null) {
 												<td><a
 													href="vehicleupdate?vehicleId=${vehicle.vehicleId}"><button
 															class="btn btn-sm btn-primary" type="submit">Edit</button></a>
-												</td>
+
+													<form class="mt-2" action="vehicledelete" method="post">
+														<input name="vehicleId" type="hidden"
+															value="${vehicle.vehicleId}">
+														<button class="btn btn-sm btn-danger" type="submit">Delete</button>
+													</form></td>
 											</tr>
 										</c:forEach>
 									</tbody>

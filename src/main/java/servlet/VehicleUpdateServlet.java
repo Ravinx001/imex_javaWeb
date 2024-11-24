@@ -52,7 +52,7 @@ public class VehicleUpdateServlet extends HttpServlet {
 		IsInt isInt = new IsInt();
 		int vehicleId = 0;
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("vehiclecreate");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("vehicle");
 
 		if (!isInt.isInt(request.getParameter("vehicleId"))) {
 			request.setAttribute("validation", "Error");

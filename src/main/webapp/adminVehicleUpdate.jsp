@@ -37,7 +37,7 @@ if (session.getAttribute("userId") == null) {
 			<div class="row">
 
 				<div class="col-md-12 my-3 text-center">
-					<h4>Add a New Vehicle</h4>
+					<h4>Update Vehicle</h4>
 				</div>
 
 				<div class="col-12 px-lg-5 pb-3">
