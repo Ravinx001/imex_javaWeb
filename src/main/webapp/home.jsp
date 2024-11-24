@@ -18,7 +18,7 @@
         =======================================-->
 
 <!-- FOR WEBPAGE TITLE -->
-<title>Imex Lanka - Home</title>
+<title>Imex Lanka - Ads</title>
 
 <!--=====================================
                     CSS LINK PART START
@@ -46,102 +46,12 @@
 </head>
 
 <body>
-	<!--=====================================
-                    HEADER PART START
-        =======================================-->
-	<header class="header-part">
-		<div class="container">
-			<div class="header-content">
-				<div class="header-left">
-					<a href="index.jsp" class="header-logo"> <img
-						src="images/blue-logo.png" alt="logo">
-					</a>
-					<button type="button" class="header-widget search-btn">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-				<form class="header-form">
-					<div class="header-search">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <input type="text"
-							placeholder="Search, Whatever you needs..." />
-						<button type="submit" title="Search Submit ">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</form>
-				<div class="header-right">
 
-					<button class="btn btn-inline menu-btn sidebar-btn">
-						<i class="fas fa-align-left"></i> <span>Menu</span>
-					</button>
-					<a href="login" class="btn btn-inline post-btn"> <i
-						class="fas fa-plus-circle"></i> <span>post your ad</span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</header>
-	<!--=====================================
-                    HEADER PART END
-        =======================================-->
+	<jsp:include page="includes/header.jsp" />
 
+	<jsp:include page="includes/sidebar.jsp" />
 
-	<!--=====================================
-                    SIDEBAR PART START
-        =======================================-->
-	<aside class="sidebar-part">
-		<div class="sidebar-body">
-			<div class="sidebar-header">
-				<a href="index.jsp" class="sidebar-logo"><img
-					src="images/blue-logo.png" alt="logo"></a>
-				<button class="sidebar-cross">
-					<i class="fas fa-times"></i>
-				</button>
-			</div>
-			<div class="sidebar-content">
-				<div class="sidebar-menu">
-
-					<div class="tab-pane active" id="author-menu">
-						<ul class="navbar-list">
-							<li class="navbar-item"><a class="navbar-link"
-								href="home">Home</a></li>
-							<li class="navbar-item">
-							<li class="navbar-item"><a class="navbar-link"
-								href="#">About Us</a></li>
-							<li class="navbar-item"><a class="navbar-link"
-								href="#l">Contact Us</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</aside>
-	<!--=====================================
-                            SIDEBAR PART END 
-                =======================================-->
-
-
-	<!--=====================================
-                    MOBILE-NAV PART START
-        =======================================-->
-	<nav class="mobile-nav">
-		<div class="container">
-			<div class="mobile-group">
-				<a href="index.jsp" class="mobile-widget"> <i
-					class="fas fa-home"></i> <span>home</span>
-				</a> <a href="#" class="mobile-widget plus-btn"> <i
-					class="fas fa-plus"></i> <span>Ad Post</span>
-				</a>
-				<button class="mobile-widget sidebar-btn">
-					<i class="fas fa-align-left"></i> <span>Menu</span>
-				</button>
-			</div>
-		</div>
-	</nav>
-	<!--=====================================
-                    MOBILE-NAV PART END
-        =======================================-->
-
+	<jsp:include page="includes/mobilenav.jsp" />
 
 	<!--=====================================
                     BANNER PART START
@@ -155,8 +65,8 @@
 					who qualify for the government-issued licence to import electric
 					automobiles for foriegn wokers
 				</p>
-				<a href="ad-list-column1.html" class="btn btn-outline"> <i
-					class="fas fa-eye"></i> <span>Show all ads</span>
+				<a href="allads" class="btn btn-outline"> <i class="fas fa-eye"></i>
+					<span>Show all ads</span>
 				</a>
 			</div>
 		</div>
@@ -518,6 +428,7 @@
 	<!--=====================================
                     FOOTER PART END
         =======================================-->
+	<jsp:include page="includes/alert.jsp" />
 
 	<!--=====================================
                     JS LINK PART START
