@@ -163,4 +163,26 @@ public class categoryService {
 		}
 		return null;
 	}
+
+	public ArrayList<Category> getAllTopCategories() {
+		try {
+			ArrayList<Category> listcategory = new ArrayList<Category>();
+			String query = "select * from category limit 4";
+			Connection con = DBConnect.getConnection();
+
+			PreparedStatement pst = con.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				Category category = new Category();
+				category.setCategoryId(rs.getInt("categoryId"));
+				category.setCategoryName(rs.getString("category"));
+				listcategory.add(category);
+			}
+			return listcategory;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

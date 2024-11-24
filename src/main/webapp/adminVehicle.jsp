@@ -1,10 +1,3 @@
-<%@page import="services.locationService"%>
-<%@page import="services.featuringService"%>
-<%@page import="services.conditionService"%>
-<%@page import="services.transmissionService"%>
-<%@page import="services.fuelTypeService"%>
-<%@page import="services.brandService"%>
-<%@page import="services.categoryService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,15 +5,6 @@
 if (session.getAttribute("userId") == null) {
 	response.sendRedirect("login.jsp");
 }
-
-categoryService categoryService = new categoryService();
-brandService brandService = new brandService();
-fuelTypeService fuelTypeService = new fuelTypeService();
-transmissionService transmissionService = new transmissionService();
-conditionService conditionService = new conditionService();
-featuringService featuringService = new featuringService();
-locationService locationService = new locationService();
-
 %>
 <!DOCTYPE html>
 <html lang="en">
