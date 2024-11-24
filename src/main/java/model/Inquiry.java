@@ -8,6 +8,24 @@ public class Inquiry {
 	String customerEmail;
 	String customerMobile;
 	String inquiry;
+	String vehicleTitle;
+	String vehiclePrice;
+
+	public String getVehicleTitle() {
+		return vehicleTitle;
+	}
+
+	public void setVehicleTitle(String vehicleTitle) {
+		this.vehicleTitle = vehicleTitle;
+	}
+
+	public String getVehiclePrice() {
+		return vehiclePrice;
+	}
+
+	public void setVehiclePrice(String vehiclePrice) {
+		this.vehiclePrice = vehiclePrice;
+	}
 
 	public int getInquiryId() {
 		return inquiryId;

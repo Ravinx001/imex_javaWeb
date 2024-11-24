@@ -77,7 +77,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("password", loggedUser.getPassword());
 			request.setAttribute("status", "success");
 
-			dispatcher = request.getRequestDispatcher("admin.jsp");
+			dispatcher = request.getRequestDispatcher("inquiry");
 
 		} else {
 			request.setAttribute("status", "failed");

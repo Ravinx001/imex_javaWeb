@@ -8,7 +8,7 @@
 			<span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
 		</button>
 		<a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold"
-			href="admin.jsp">Admin Panel</a>
+			href="inquiry">Admin Panel</a>
 
 		<div class="btn-group ms-auto">
 			<a class="nav-link dropdown-toggle ms-auto text-white"

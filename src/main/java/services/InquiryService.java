@@ -54,6 +54,8 @@ public class InquiryService {
 				inquiry.setCustomerName(rs.getString("customerName"));
 				inquiry.setCustomerMobile(rs.getString("customerMobile"));
 				inquiry.setCustomerEmail(rs.getString("customerEmail"));
+				inquiry.setVehicleTitle(rs.getString("title"));
+				inquiry.setVehiclePrice(rs.getString("price"));
 
 				listinquiry.add(inquiry);
 			}

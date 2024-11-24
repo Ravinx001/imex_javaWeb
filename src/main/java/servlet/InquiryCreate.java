@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +21,14 @@ public class InquiryCreate extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		InquiryService inquiryService = new InquiryService();
+
+		ArrayList<Inquiry> inquires = inquiryService.getAllInquires();
+		request.setAttribute("inquires", inquires);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
+
+		dispatcher.forward(request, response);
+		return;
 
 	}
 

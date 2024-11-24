@@ -9,7 +9,7 @@
 					<div class="text-muted small fw-bold text-uppercase px-3">
 						CORE</div>
 				</li>
-				<li><a href="admin.jsp" class="nav-link px-3 active">
+				<li><a href="inquiry" class="nav-link px-3 active">
 						<span class="me-2"><i class="bi bi-speedometer2"></i></span> <span>Dashboard</span>
 				</a></li>
 				<li class="my-4">
