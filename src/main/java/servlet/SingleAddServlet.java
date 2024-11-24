@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +29,11 @@ public class SingleAddServlet extends HttpServlet {
 		int vehicleId = 0;
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("home");
+
+		vehicleService vehicleService = new vehicleService();
+
+		ArrayList<Vehicle> recomendedVehicles = vehicleService.getAllRecommendedVehicles();
+		request.setAttribute("recomendedvehicles", recomendedVehicles);
 
 		if (!isInt.isInt(request.getParameter("vehicleId"))) {
 			request.setAttribute("validation", "Error");

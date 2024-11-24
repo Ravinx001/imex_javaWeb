@@ -170,8 +170,9 @@
 								<div class="row">
 									<div class="col-12 col-lg-4 p-3">
 										<input required type="text" name="name" class="form-control"
-											placeholder="Your Name"> <input required type="hidden"
-											name="vehicleId" value="${vehicle.vehicleId}" class="form-control">
+											placeholder="Your Name"> <input required
+											type="hidden" name="vehicleId" value="${vehicle.vehicleId}"
+											class="form-control">
 									</div>
 									<div class="col-12 col-lg-4 p-3">
 										<input required type="email" name="email" class="form-control"
@@ -211,7 +212,7 @@
 				<div class="col-lg-12">
 					<div class="section-center-heading">
 						<h2>
-							Related <span>Ads</span>
+							Recommended <span>Ads</span>
 						</h2>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
 							aspernatur illum vel sunt libero voluptatum repudiandae veniam
@@ -222,167 +223,45 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="related-slider slider-arrow">
-						<div class="product-card">
-							<div class="product-media">
-								<div class="product-img">
-									<img src="images/cars/car1.jpg" alt="product">
-								</div>
-								<div class="cross-vertical-badge product-badge">
-									<i class="fas fa-clipboard-check"></i> <span>recommend</span>
-								</div>
-								<div class="product-type">
-									<span class="flat-badge booking">Used Vehicles</span>
-								</div>
-								<ul class="product-action">
-									<li class="view"><i class="fas fa-eye"></i><span>264</span></li>
-								</ul>
-							</div>
-							<div class="product-content">
-								<ol class="breadcrumb product-category">
-									<li><i class="fas fa-tags"></i></li>
-									<li class="breadcrumb-item">Recommended</li>
-								</ol>
-								<h5 class="product-title">
-									<a href="ad-details-left.html">Lorem ipsum dolor sit amet
-										consect adipisicing elit</a>
-								</h5>
-								<div class="product-meta">
-									<span><i class="fas fa-map-marker-alt"></i>Colombo</span> <span><i
-										class="fas fa-clock"></i>35 min ago</span>
-								</div>
-								<div class="product-info">
-									<h5 class="product-price">LKR 20 Million</h5>
 
-								</div>
-							</div>
-						</div>
-						<div class="product-card">
-							<div class="product-media">
-								<div class="product-img">
-									<img src="images/gems/gem3.jpg" alt="product">
-								</div>
-								<div class="cross-vertical-badge product-badge">
-									<i class="fas fa-clipboard-check"></i> <span>recommend</span>
-								</div>
-								<div class="product-type">
-									<span class="flat-badge sale">Gems</span>
-								</div>
-								<ul class="product-action">
-									<li class="view"><i class="fas fa-eye"></i><span>264</span></li>
-								</ul>
-							</div>
-							<div class="product-content">
-								<ol class="breadcrumb product-category">
-									<li><i class="fas fa-tags"></i></li>
-									<li class="breadcrumb-item">Recommended</li>
-									<h5 class="product-title">
-										<a href="ad-details-left.html">Lorem ipsum dolor sit amet
-											consect adipisicing elit</a>
-									</h5>
-									<div class="product-meta">
-										<span><i class="fas fa-map-marker-alt"></i>Colombo</span> <span><i
-											class="fas fa-clock"></i>4 Days ago</span>
+						<c:forEach var="recomendedvehicle" items="${recomendedvehicles}">
+							<div class="product-card">
+								<a href="viewadd?vehicleId=${recomendedvehicle.vehicleId}">
+									<div class="product-media">
+										<div class="product-img">
+											<img src="images/cars/car5.jpg" alt="product">
+										</div>
+										<div class="cross-vertical-badge product-badge">
+											<i class="fas fa-clipboard-check"></i> <span>recommend</span>
+										</div>
+										<div class="product-type">
+											<span class="flat-badge booking">${recomendedvehicle.conditionName}</span>
+										</div>
+										<ul class="product-action">
+											<li class="view"><i class="fas fa-eye"></i><span>0</span></li>
+										</ul>
 									</div>
-									<div class="product-info">
-										<h5 class="product-price">LKR 12 Million</h5>
+									<div class="product-content">
+										<ol class="breadcrumb product-category">
+											<li><i class="fas fa-tags"></i></li>
+											<li class="breadcrumb-item">Recommended</li>
+										</ol>
+										<h5 class="product-title">
+											<a href="viewadd?vehicleId=${recomendedvehicle.vehicleId}">${recomendedvehicle.title}</a>
+										</h5>
+										<div class="product-meta">
+											<span><i class="fas fa-map-marker-alt"></i>${recomendedvehicle.locationName}</span>
+										</div>
+										<div class="product-info">
+											<h5 class="product-price">LKR ${recomendedvehicle.price}</h5>
+
+										</div>
 									</div>
+								</a>
 							</div>
-						</div>
-						<div class="product-card">
-							<div class="product-media">
-								<div class="product-img">
-									<img src="images/cars/car2.jpg" alt="product">
-								</div>
-								<div class="cross-vertical-badge product-badge">
-									<i class="fas fa-clipboard-check"></i> <span>recommend</span>
-								</div>
-								<div class="product-type">
-									<span class="flat-badge rent">E-Vehicles</span>
-								</div>
-								<ul class="product-action">
-									<li class="view"><i class="fas fa-eye"></i><span>264</span></li>
-								</ul>
-							</div>
-							<div class="product-content">
-								<ol class="breadcrumb product-category">
-									<li><i class="fas fa-tags"></i></li>
-									<li class="breadcrumb-item">Recommended</li>
-								</ol>
-								<h5 class="product-title">
-									<a href="ad-details-left.html">Lorem ipsum dolor sit amet
-										consect adipisicing elit</a>
-								</h5>
-								<div class="product-meta">
-									<span><i class="fas fa-map-marker-alt"></i>Malabe</span> <span><i
-										class="fas fa-clock"></i>10 Days ago</span>
-								</div>
-								<div class="product-info">
-									<h5 class="product-price">LKR 11 Million</h5>
-								</div>
-							</div>
-						</div>
-						<div class="product-card">
-							<div class="product-media">
-								<div class="product-img">
-									<img src="images/gems/gem4.webp" alt="product">
-								</div>
 
-								<div class="product-type">
-									<span class="flat-badge sale">Gems</span>
-								</div>
-								<ul class="product-action">
-									<li class="view"><i class="fas fa-eye"></i><span>264</span></li>
-								</ul>
-							</div>
-							<div class="product-content">
-								<ol class="breadcrumb product-category">
-									<li><i class="fas fa-tags"></i></li>
-									<li class="breadcrumb-item">Related</li>
-								</ol>
-								<h5 class="product-title">
-									<a href="ad-details-left.html">Lorem ipsum dolor sit amet
-										consect adipisicing elit</a>
-								</h5>
-								<div class="product-meta">
-									<span><i class="fas fa-map-marker-alt"></i>Rathnapura</span> <span><i
-										class="fas fa-clock"></i>1 month ago</span>
-								</div>
-								<div class="product-info">
-									<h5 class="product-price">LKR 800,000</h5>
-								</div>
-							</div>
-						</div>
-						<div class="product-card">
-							<div class="product-media">
-								<div class="product-img">
-									<img src="images/cars/car5.jpg" alt="product">
-								</div>
-								<div class="product-type">
-									<span class="flat-badge booking">Used Vehicles</span>
-								</div>
-								<ul class="product-action">
-									<li class="view"><i class="fas fa-eye"></i><span>264</span></li>
-								</ul>
-							</div>
-							<div class="product-content">
-								<ol class="breadcrumb product-category">
-									<li><i class="fas fa-tags"></i></li>
-									<li class="breadcrumb-item">Related</li>
-								</ol>
-								<h5 class="product-title">
-									<a href="ad-details-left.html">Lorem ipsum dolor sit amet
-										consect adipisicing elit</a>
-								</h5>
-								<div class="product-meta">
-									<span><i class="fas fa-map-marker-alt"></i>Colombo</span> <span><i
-										class="fas fa-clock"></i>20 days ago</span>
-								</div>
-								<div class="product-info">
-									<h5 class="product-price">LKR 22 Million</h5>
+						</c:forEach>
 
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

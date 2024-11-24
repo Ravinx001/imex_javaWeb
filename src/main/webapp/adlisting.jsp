@@ -191,12 +191,12 @@
 										<ol class="breadcrumb product-category">
 											<li class="breadcrumb-item">
 												<h3>
-													<a href="#">${allvehicle.title}</a>
+													<a href="viewadd?vehicleId=${allvehicle.vehicleId}">${allvehicle.title}</a>
 												</h3>
 											</li>
 										</ol>
 										<h5 class="product-title">
-											<a href="#">${allvehicle.description}</a>
+											<a href="viewadd?vehicleId=${allvehicle.vehicleId}">${allvehicle.description}</a>
 										</h5>
 										<div class="product-meta">
 											<span><i class="fas fa-map-marker-alt"></i>${allvehicle.locationName}</span>

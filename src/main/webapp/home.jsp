@@ -117,34 +117,38 @@
 				</div>
 				<div class="col-md-7 col-lg-7">
 					<div class="feature-card-slider slider-arrow">
-						<c:forEach var="usedvehicle" items="${recomendedvehicles}">
-
-							<div class="feature-card">
-								<a href="#" class="feature-img"> <img
-									src="images/cars/car1.jpg" alt="feature">
-								</a>
-								<div class="cross-inline-badge feature-badge">
-									<span>featured</span>
-								</div>
-								<div class="feature-content">
-									<ol class="breadcrumb feature-category">
-										<a href="">
-											<li><span class="flat-badge rent">${usedvehicle.conditionName}</span></li>
-										</a>
-									</ol>
-									<h3 class="feature-title">
-										<a href="#">${usedvehicle.title}</a>
-									</h3>
-									<div class="feature-meta">
-										<span class="feature-price">LKR ${usedvehicle.price}</span>
+						<c:if test="${not empty newvehicles}">
+							<c:forEach var="newvehicle" items="${newvehicles}">
+								<div class="feature-card">
+									<a href="viewadd?vehicleId=${newvehicle.vehicleId}"
+										class="feature-img"> <img src="images/cars/car1.jpg"
+										alt="feature">
+									</a>
+									<div class="cross-inline-badge feature-badge">
+										<span>featured</span>
+									</div>
+									<div class="feature-content">
+										<ol class="breadcrumb feature-category">
+											<li><span class="flat-badge rent">${newvehicle.conditionName}</span></li>
+										</ol>
+										<h3 class="feature-title">
+											<a href="viewadd?vehicleId=${newvehicle.vehicleId}">${newvehicle.title}</a>
+										</h3>
+										<div class="feature-meta">
+											<span class="feature-price">LKR ${newvehicle.price}</span>
+										</div>
 									</div>
 								</div>
-							</div>
+							</c:forEach>
+						</c:if>
 
-						</c:forEach>
+						<c:if test="${empty newvehicles}">
+							<h4>No vehicles available at the moment.</h4>
+						</c:if>
+
 					</div>
 					<div class="feature-thumb-slider">
-						<c:forEach var="usedvehicle" items="${recomendedvehicles}">
+						<c:forEach var="newvehicle" items="${newvehicles}">
 							<div class="feature-thumb">
 								<img src="images/cars/car1.jpg" alt="feature">
 							</div>
@@ -185,35 +189,39 @@
 				<div class="col-md-7 col-lg-7">
 					<div class="feature-card-slider slider-arrow">
 
-						<c:forEach var="usedvehicle" items="${recomendedvehicles}">
-
-							<div class="feature-card">
-								<a href="#" class="feature-img"> <img
-									src="images/cars/car5.jpg" alt="feature">
-								</a>
-								<div class="cross-inline-badge feature-badge">
-									<span>featured</span>
-								</div>
-								<div class="feature-content">
-									<ol class="breadcrumb feature-category">
-										<a href="#">
+						<c:if test="${not empty usedvehicles}">
+							<c:forEach var="usedvehicle" items="${usedvehicles}">
+								<div class="feature-card">
+									<a href="viewadd?vehicleId=${usedvehicle.vehicleId}"
+										class="feature-img"> <img src="images/cars/car5.jpg"
+										alt="feature">
+									</a>
+									<div class="cross-inline-badge feature-badge">
+										<span>featured</span>
+									</div>
+									<div class="feature-content">
+										<ol class="breadcrumb feature-category">
 											<li><span class="flat-badge booking">${usedvehicle.conditionName}</span></li>
-										</a>
-									</ol>
-									<h3 class="feature-title">
-										<a href="#">${usedvehicle.title}</a>
-									</h3>
-									<div class="feature-meta">
-										<span class="feature-price">LKR ${usedvehicle.price}</span>
+										</ol>
+										<h3 class="feature-title">
+											<a href="viewadd?vehicleId=${usedvehicle.vehicleId}">${usedvehicle.title}</a>
+										</h3>
+										<div class="feature-meta">
+											<span class="feature-price">LKR ${usedvehicle.price}</span>
+										</div>
 									</div>
 								</div>
-							</div>
+							</c:forEach>
+						</c:if>
 
-						</c:forEach>
+						<c:if test="${empty usedvehicles}">
+							<h4>No vehicles available at the moment.</h4>
+						</c:if>
+
 					</div>
 
 					<div class="feature-thumb-slider">
-						<c:forEach var="usedvehicle" items="${recomendedvehicles}">
+						<c:forEach var="usedvehicle" items="${usedvehicles}">
 							<div class="feature-thumb">
 								<img src="images/cars/car5.jpg" alt="feature">
 							</div>
@@ -254,7 +262,7 @@
 
 						<c:forEach var="recomendedvehicle" items="${recomendedvehicles}">
 							<div class="product-card">
-								<a href="#">
+								<a href="viewadd?vehicleId=${recomendedvehicle.vehicleId}">
 									<div class="product-media">
 										<div class="product-img">
 											<img src="images/cars/car5.jpg" alt="product">
@@ -275,7 +283,7 @@
 											<li class="breadcrumb-item">Recommended</li>
 										</ol>
 										<h5 class="product-title">
-											<a href="#">${recomendedvehicle.title}</a>
+											<a href="viewadd?vehicleId=${recomendedvehicle.vehicleId}">${recomendedvehicle.title}</a>
 										</h5>
 										<div class="product-meta">
 											<span><i class="fas fa-map-marker-alt"></i>${recomendedvehicle.locationName}</span>
@@ -296,7 +304,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="center-50">
-						<a href="ad-list-column1.html" class="btn btn-inline"> <i
+						<a href="allads" class="btn btn-inline"> <i
 							class="fas fa-eye"></i> <span>view all recommend</span>
 						</a>
 					</div>
