@@ -37,16 +37,16 @@ if (session.getAttribute("userId") == null) {
 				<div class="row d-flex justify-content-center mt-4">
 					<div class="col-12 col-lg-6">
 						<div class="card mb-3">
-							<img src="images/no-image.svg" id="image0" class="card-img-top"
+							<img src="${vehicle.imagePath ? vehicle.imagePath : 'images/no-image.svg'}" id="image0" class="card-img-top"
 								alt="...">
 						</div>
 					</div>
 				</div>
 
-				<form action="vehicleimage" method="POST"
+				<form action="vehicleimage" method="post"
 					enctype="multipart/form-data" class="row g-3">
+
 					<div class="col-12">
-						<input name="vehicleId" value="${vehicle.vehicleId}" class="form-control" type="hidden">
 						<label for="formFileMultiple" class="form-label">Image</label>
 						<div class="input-group">
 							<input onchange="changeImage();" name="image"
@@ -75,6 +75,7 @@ if (session.getAttribute("userId") == null) {
 	<script src="./js/script.js"></script>
 
 	<jsp:include page="includes/alert.jsp" />
+	<jsp:include page="includes/session_alert.jsp" />
 </body>
 
 </html>

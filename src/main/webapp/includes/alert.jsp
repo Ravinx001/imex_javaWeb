@@ -28,6 +28,27 @@ var validation = document.getElementById("validation").value;
 		});
 
 	}
-<%if (session.getAttribute("status").equals("failed") || session.getAttribute("status").equals("success")) {%>alert(<%session.getAttribute("validation");%>);<%}%>
-	
 </script>
+
+<input type="hidden" id="url_status" value="<%=request.getParameter("status")%>">
+<input type="hidden" id="url_validation" value="<%=request.getParameter("validation")%>">
+
+<script>
+    var status = document.getElementById("url_status").value;
+    var validation = document.getElementById("url_validation").value;
+
+    if (status == "failed" && validation) { // Check for status and non-null validation
+        Swal.fire({
+            title: decodeURIComponent(validation), // Decode URL-encoded text
+            icon: "error"
+        });
+    }
+
+    if (status == "success" && validation) {
+        Swal.fire({
+            title: decodeURIComponent(validation),
+            icon: "success"
+        });
+    }
+</script>
+

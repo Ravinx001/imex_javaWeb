@@ -94,7 +94,8 @@ if (session.getAttribute("userId") == null) {
 															class="btn btn-sm btn-primary" type="submit">Edit</button></a>
 
 													<a href="vehicleimage?vehicleId=${vehicle.vehicleId}"><button
-															class="btn btn-sm btn-warning mt-2" type="submit">Upload Image</button></a>
+															class="btn btn-sm btn-warning mt-2" type="submit">Upload
+															Image</button></a>
 
 													<form class="mt-2" action="vehicledelete" method="post">
 														<input name="vehicleId" type="hidden"
@@ -137,6 +138,7 @@ if (session.getAttribute("userId") == null) {
 	<script src="./js/script.js"></script>
 
 	<jsp:include page="includes/alert.jsp" />
+	<jsp:include page="includes/session_alert.jsp" />
 </body>
 
 </html>

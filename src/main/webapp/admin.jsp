@@ -115,6 +115,7 @@ if (session.getAttribute("userId") == null) {
 	<script src="./js/script.js"></script>
 
 	<jsp:include page="includes/alert.jsp" />
+	<jsp:include page="includes/session_alert.jsp" />
 </body>
 
 </html>

@@ -64,31 +64,8 @@
 						<div class="ad-details-slider-group">
 							<div class="ad-details-slider slider-arrow">
 								<div>
-									<img src="images/cars/car5.jpg" alt="details">
+									<img src="${vehicle.imagePath ? vehicle.imagePath : 'images/no-image.svg'}" alt="details">
 								</div>
-								<div>
-									<img src="images/cars/car5(6).jpg" alt="details">
-								</div>
-								<div>
-									<img src="images/cars/car5(3).jpg" alt="details">
-								</div>
-								<div>
-									<img src="images/cars/car5(4).jpg" alt="details">
-								</div>
-							</div>
-						</div>
-						<div class="ad-thumb-slider">
-							<div>
-								<img src="images/cars/car5.jpg" alt="details">
-							</div>
-							<div>
-								<img src="images/cars/car5(6).jpg" alt="details">
-							</div>
-							<div>
-								<img src="images/cars/car5(3).jpg" alt="details">
-							</div>
-							<div>
-								<img src="images/cars/car5(4).jpg" alt="details">
 							</div>
 						</div>
 						<h3 class="ad-details-title">${vehicle.title}</h3>

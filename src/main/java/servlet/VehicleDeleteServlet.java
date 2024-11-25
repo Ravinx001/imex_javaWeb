@@ -32,10 +32,7 @@ public class VehicleDeleteServlet extends HttpServlet {
 		boolean status = false;
 
 		if (!isInt.isInt(request.getParameter("vehicleId")) || request.getParameter("vehicleId").equals("")) {
-			request.setAttribute("validation", "Error");
-			request.setAttribute("status", "failed");
-
-			response.sendRedirect("vehicle");
+			response.sendRedirect("vehicle?validation=Error.&&status=failed");
 			return;
 		} else {
 			vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
@@ -49,16 +46,10 @@ public class VehicleDeleteServlet extends HttpServlet {
 		status = vehicleservice.delete(vehicle);
 
 		if (status) {
-			request.setAttribute("validation", "Successfully Deleted !");
-			request.setAttribute("status", "success");
-
-			response.sendRedirect("vehicle");
+			response.sendRedirect("vehicle?validation=Successfully Deleted !&&status=success");
 			return;
 		} else {
-			request.setAttribute("validation", "Deletion Failed !");
-			request.setAttribute("status", "failed");
-
-			response.sendRedirect("vehicle");
+			response.sendRedirect("vehicle?validation=Deletion Failed !&&status=failed");
 			return;
 		}
 

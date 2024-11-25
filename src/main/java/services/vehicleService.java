@@ -98,12 +98,19 @@ public class vehicleService {
 
 		try {
 			String query = "select * from vehicle inner join category on category.categoryId = vehicle.categoryId inner join brand on brand.brandId = vehicle.brandId inner join fueltype on fueltype.fueltypeId = vehicle.fueltypeId inner join transmission on transmission.transmissionId = vehicle.transmissionId inner join featuring on featuring.featuringId = vehicle.featuringId inner join conditions on conditions.conditionId = vehicle.conditionId inner join location on location.locationId = vehicle.locationId WHERE vehicleId = ?";
+			String imgquery = "select * from vehimgpaths WHERE vehicleId = ?";
 
 			PreparedStatement pst = con.prepareStatement(query);
+			PreparedStatement imgpst = con.prepareStatement(imgquery);
 
 			pst.setInt(1, vehicleId);
+			imgpst.setInt(1, vehicleId);
 
 			ResultSet rs = pst.executeQuery();
+			ResultSet imgrs = imgpst.executeQuery();
+
+			System.out.println("Select Query: " + rs);
+			System.out.println("Image Select Query: " + imgrs);
 
 			Vehicle vehicle = new Vehicle();
 
@@ -133,6 +140,11 @@ public class vehicleService {
 				vehicle.setFeaturingName(rs.getString("featuring"));
 				vehicle.setConditionName(rs.getString("condition"));
 				vehicle.setLocationName(rs.getString("location"));
+
+				if (imgrs.next()) {
+					vehicle.setImagePath(rs.getString("vehimgpath"));
+					System.out.println("Image Path: " + rs.getString("vehimgpath"));
+				}
 
 				return vehicle;
 			} else {
@@ -216,7 +228,7 @@ public class vehicleService {
 			int rowCount1 = pst1.executeUpdate();
 			int rowCount2 = pst2.executeUpdate();
 
-			if (rowCount1 > 0 && rowCount2 > 0) {
+			if (rowCount1 > 0 || rowCount2 > 0) {
 				return true;
 			}
 
@@ -419,7 +431,7 @@ public class vehicleService {
 		return null;
 	}
 
-	public boolean updateVehicleImage(int vehicleId, String imagePath) {
+	public boolean saveVehicleImage(int vehicleId, String imagePath) {
 		try {
 			PreparedStatement pst = con.prepareStatement("insert into vehimgpaths values(0,?,?)");
 
@@ -435,6 +447,54 @@ public class vehicleService {
 			int rowCount = pst.executeUpdate();
 
 			if (rowCount > 0) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	public boolean updateVehicleImage(int vehicleId, String imagePath) {
+		try {
+			PreparedStatement pst = con.prepareStatement("update vehimgpaths set vehimgpath = ? WHERE vehicleId = ?");
+
+			pst.setString(1, imagePath);
+			pst.setInt(2, vehicleId);
+
+			System.out.println("----------- ------------ ----------");
+			System.out.println("----------- ------------ ----------");
+			System.out.println("----------- ------------ ----------");
+			System.out.println("Image Path: " + imagePath);
+			System.out.println("Vehicle Id: " + vehicleId);
+
+			int rowCount = pst.executeUpdate();
+
+			if (rowCount > 0) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	public boolean imageCheck(int vehicleId) {
+
+		try {
+			String query = "select * from vehimgpaths WHERE vehicleId = ?";
+
+			PreparedStatement pst = con.prepareStatement(query);
+
+			pst.setInt(1, vehicleId);
+
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
 				return true;
 			}
 

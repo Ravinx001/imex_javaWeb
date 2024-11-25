@@ -228,109 +228,87 @@ public class VehicleUpdateServlet extends HttpServlet {
 		System.out.println("userStatus: " + userStatus);
 
 		if (title == null || title.equals("") || title.length() < 2 || title.length() > 100) {
-			request.setAttribute("validation", "Invalid Title !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect("vehicleupdate?validation=Invalid Title !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (titleStatus && !title.equals(vehicle.getTitle())) {
-			request.setAttribute("validation", "This Title is Unavailabe !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=This Title is Unavailabe !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (price != 0.00 && price < 0) {
-			request.setAttribute("validation", "Invalid Price !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect("vehicleupdate?validation=Invalid Price !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if ((manufactureYear != 0) && (manufactureYear > currentYear)) {
-			request.setAttribute("validation", "Invalid Year !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect("vehicleupdate?validation=Invalid Year !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("model").equals("")) && (model.length() < 2 || model.length() > 50)) {
-			request.setAttribute("validation", "Invalid Model !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect("vehicleupdate?validation=Invalid Model !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("modelVariant").equals(""))
 				&& (modelVariant.length() < 2 || modelVariant.length() > 50)) {
-			request.setAttribute("validation", "Invalid Modal Variant !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=Invalid Modal Variant !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("mileage").equals("")) && (mileage.length() < 2 || mileage.length() > 50)) {
-			request.setAttribute("validation", "Invalid Mileage !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect("vehicleupdate?validation=Invalid Mileage !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("engineCapacity").equals(""))
 				&& (engineCapacity.length() < 2 || engineCapacity.length() > 45)) {
-			request.setAttribute("validation", "Invalid Engine Capacity !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=Invalid Engine Capacity !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if ((!request.getParameter("description").equals(""))
 				&& (description.length() < 2 || description.length() > 2000)) {
-			request.setAttribute("validation", "Invalid Description !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=Invalid Description !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (!categoryStatus) {
-			request.setAttribute("validation", "Select Category is Unavailabe !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=Select Category is Unavailabe !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (!brandStatus) {
-			request.setAttribute("validation", "This Brand is Unavailabe !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=This Brand is Unavailabe !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (!fuelTypeStatus) {
-			request.setAttribute("validation", "This Fuel Type is Unavailabe !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=This Fuel Type is Unavailabe !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (!transmissionStatus) {
-			request.setAttribute("validation", "This Transmission is Unavailabe !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=This Transmission is Unavailabe !&&status=failed&&vehicleId="
+							+ vehicleId);
 			return;
 		} else if (!featuringStatus) {
-			request.setAttribute("validation", "This Featuring is Unavailabe !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=This Featuring is Unavailabe !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (!locationStatus) {
-			request.setAttribute("validation", "This Location is Unavailabe !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=This Location is Unavailabe !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (!conditionStatus) {
-			request.setAttribute("validation", "This Condition is Unavailabe !");
-			request.setAttribute("status", "failed");
-
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=This Condition is Unavailabe !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		} else if (!userStatus) {
-			request.setAttribute("validation", "This Invalid User Id !");
-			request.setAttribute("status", "failed");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=This Invalid User Id !&&status=failed&&vehicleId=" + vehicleId);
 			return;
 		}
 
@@ -387,10 +365,10 @@ public class VehicleUpdateServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		} else {
-			request.setAttribute("status", "failed");
-			request.setAttribute("validation", "Vehicle Advertisement Update Failed !");
 
-			response.sendRedirect("vehicleupdate?vehicleId=" + vehicleId);
+			response.sendRedirect(
+					"vehicleupdate?validation=Vehicle Advertisement Update Failed !&&status=failed&&vehicleId="
+							+ vehicleId);
 			return;
 		}
 	}

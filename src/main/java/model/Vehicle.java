@@ -26,6 +26,15 @@ public class Vehicle {
 	String featuringName;
 	String conditionName;
 	String locationName;
+	String imagePath;
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 
 	public String getCategotryName() {
 		return categotryName;

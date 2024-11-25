@@ -49,7 +49,8 @@ if (session.getAttribute("userId") == null) {
 							<input value="${vehicle.title}" required type="text"
 								class="form-control" id="exampleFormControlInput1" name="title">
 							<input value="${vehicle.vehicleId}" required type="hidden"
-								class="form-control" id="exampleFormControlInput1" name="vehicleId">
+								class="form-control" id="exampleFormControlInput1"
+								name="vehicleId">
 						</div>
 						<div class="col-md-4">
 							<label for="exampleFormControlInput1" class="form-label">Price</label>
@@ -211,6 +212,7 @@ if (session.getAttribute("userId") == null) {
 	<script src="./js/script.js"></script>
 
 	<jsp:include page="includes/alert.jsp" />
+	<jsp:include page="includes/session_alert.jsp" />
 </body>
 
 </html>
