@@ -37,7 +37,7 @@ if (session.getAttribute("userId") == null) {
 				<div class="row d-flex justify-content-center mt-4">
 					<div class="col-12 col-lg-6">
 						<div class="card mb-3">
-							<img src="${vehicle.imagePath ? vehicle.imagePath : 'images/no-image.svg'}" id="image0" class="card-img-top"
+							<img src="${vehicle.imagePath}" id="image0" class="card-img-top"
 								alt="...">
 						</div>
 					</div>
@@ -75,7 +75,6 @@ if (session.getAttribute("userId") == null) {
 	<script src="./js/script.js"></script>
 
 	<jsp:include page="includes/alert.jsp" />
-	<jsp:include page="includes/session_alert.jsp" />
 </body>
 
 </html>

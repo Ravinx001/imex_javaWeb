@@ -80,7 +80,6 @@ if (session.getAttribute("userId") == null) {
 	</main>
 
 	<!-- Vertically centered modal -->
-	<!-- Vertically centered modal -->
 	<div class="modal fade" id="modalDeleteConfirm" tabindex="-1"
 		aria-labelledby="modalDeleteConfirmLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">

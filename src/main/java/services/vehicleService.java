@@ -98,19 +98,14 @@ public class vehicleService {
 
 		try {
 			String query = "select * from vehicle inner join category on category.categoryId = vehicle.categoryId inner join brand on brand.brandId = vehicle.brandId inner join fueltype on fueltype.fueltypeId = vehicle.fueltypeId inner join transmission on transmission.transmissionId = vehicle.transmissionId inner join featuring on featuring.featuringId = vehicle.featuringId inner join conditions on conditions.conditionId = vehicle.conditionId inner join location on location.locationId = vehicle.locationId WHERE vehicleId = ?";
-			String imgquery = "select * from vehimgpaths WHERE vehicleId = ?";
 
 			PreparedStatement pst = con.prepareStatement(query);
-			PreparedStatement imgpst = con.prepareStatement(imgquery);
 
 			pst.setInt(1, vehicleId);
-			imgpst.setInt(1, vehicleId);
 
 			ResultSet rs = pst.executeQuery();
-			ResultSet imgrs = imgpst.executeQuery();
 
 			System.out.println("Select Query: " + rs);
-			System.out.println("Image Select Query: " + imgrs);
 
 			Vehicle vehicle = new Vehicle();
 
@@ -141,9 +136,15 @@ public class vehicleService {
 				vehicle.setConditionName(rs.getString("condition"));
 				vehicle.setLocationName(rs.getString("location"));
 
-				if (imgrs.next()) {
-					vehicle.setImagePath(rs.getString("vehimgpath"));
-					System.out.println("Image Path: " + rs.getString("vehimgpath"));
+				String imagePth = getVehicleImagePath(vehicleId);
+
+				if (imagePth != null) {
+
+					vehicle.setImagePath(imagePth);
+
+					System.out.println("Image Path From Service Class: " + imagePth);
+				} else {
+					vehicle.setImagePath("images/no-image.svg");
 				}
 
 				return vehicle;
@@ -278,6 +279,17 @@ public class vehicleService {
 				vehicle.setConditionName(rs.getString("condition"));
 				vehicle.setLocationName(rs.getString("location"));
 
+				String imagePth = getVehicleImagePath(rs.getInt("vehicleId"));
+
+				if (imagePth != null) {
+
+					vehicle.setImagePath(imagePth);
+
+					System.out.println("Image Path From Service Class: " + imagePth);
+				} else {
+					vehicle.setImagePath("images/no-image.svg");
+				}
+
 				listvehicle.add(vehicle);
 			}
 			return listvehicle;
@@ -325,6 +337,17 @@ public class vehicleService {
 				vehicle.setFeaturingName(rs.getString("featuring"));
 				vehicle.setConditionName(rs.getString("condition"));
 				vehicle.setLocationName(rs.getString("location"));
+
+				String imagePth = getVehicleImagePath(rs.getInt("vehicleId"));
+
+				if (imagePth != null) {
+
+					vehicle.setImagePath(imagePth);
+
+					System.out.println("Image Path From Service Class: " + imagePth);
+				} else {
+					vehicle.setImagePath("images/no-image.svg");
+				}
 
 				listvehicle.add(vehicle);
 			}
@@ -374,6 +397,17 @@ public class vehicleService {
 				vehicle.setConditionName(rs.getString("condition"));
 				vehicle.setLocationName(rs.getString("location"));
 
+				String imagePth = getVehicleImagePath(rs.getInt("vehicleId"));
+
+				if (imagePth != null) {
+
+					vehicle.setImagePath(imagePth);
+
+					System.out.println("Image Path From Service Class: " + imagePth);
+				} else {
+					vehicle.setImagePath("images/no-image.svg");
+				}
+
 				listvehicle.add(vehicle);
 			}
 			return listvehicle;
@@ -421,6 +455,17 @@ public class vehicleService {
 				vehicle.setFeaturingName(rs.getString("featuring"));
 				vehicle.setConditionName(rs.getString("condition"));
 				vehicle.setLocationName(rs.getString("location"));
+
+				String imagePth = getVehicleImagePath(rs.getInt("vehicleId"));
+
+				if (imagePth != null) {
+
+					vehicle.setImagePath(imagePth);
+
+					System.out.println("Image Path From Service Class: " + imagePth);
+				} else {
+					vehicle.setImagePath("images/no-image.svg");
+				}
 
 				listvehicle.add(vehicle);
 			}
@@ -491,6 +536,71 @@ public class vehicleService {
 			PreparedStatement pst = con.prepareStatement(query);
 
 			pst.setInt(1, vehicleId);
+
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	public String getVehicleImagePath(int vehicleId) {
+		try {
+			String query = "select * from vehimgpaths WHERE vehicleId = ?";
+
+			PreparedStatement pst = con.prepareStatement(query);
+
+			pst.setInt(1, vehicleId);
+
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				return rs.getString("vehimgpath");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public boolean getByCategory(int categoryId) {
+
+		try {
+			String query = "select * from vehicle WHERE categoryId = ?";
+
+			PreparedStatement pst = con.prepareStatement(query);
+
+			pst.setInt(1, categoryId);
+
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	public boolean getByBrand(int brandId) {
+
+		try {
+			String query = "select * from vehicle WHERE brandId = ?";
+
+			PreparedStatement pst = con.prepareStatement(query);
+
+			pst.setInt(1, brandId);
 
 			ResultSet rs = pst.executeQuery();
 

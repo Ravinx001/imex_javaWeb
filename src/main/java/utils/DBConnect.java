@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBConnect {
 
-	private static String url = "jdbc:mysql://localhost:3306/imex?useSSL=false";
+	private static String url = "jdbc:mysql://localhost:3306/imex";
 	private static String user = "root";
 	private static String password = "Ravi400500lak@";
 	private static Connection con;

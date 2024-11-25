@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Brand;
 import services.brandService;
+import services.vehicleService;
 
 @WebServlet("/brandupdate")
 public class BrandUpdate extends HttpServlet {
@@ -58,6 +59,7 @@ public class BrandUpdate extends HttpServlet {
 		brandId = Integer.parseInt(request.getParameter("brandId"));
 
 		brandService service = new brandService();
+		vehicleService vehicleService = new vehicleService();
 		Brand brandUpdated = new Brand();
 
 		brandUpdated = service.getOne(brandId);
@@ -140,6 +142,16 @@ public class BrandUpdate extends HttpServlet {
 
 			Brand brand = new Brand();
 			brand.setBrandId(brandId);
+
+			boolean vehicleAvailabilityStatus = vehicleService.getByBrand(brandId);
+
+			if (vehicleAvailabilityStatus) {
+				request.setAttribute("status", "failed");
+				request.setAttribute("validation", "Brand Can't Deleted As Vehicle Ads are refered by this Brand!");
+
+				dispatcher.forward(request, response);
+				return;
+			}
 
 			boolean status = service.delete(brand);
 

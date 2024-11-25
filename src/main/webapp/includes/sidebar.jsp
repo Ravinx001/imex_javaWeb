@@ -17,10 +17,11 @@
 				<div class="tab-pane active" id="author-menu">
 					<ul class="navbar-list">
 						<li class="navbar-item"><a class="navbar-link" href="home">Home</a></li>
+												<li class="navbar-item"><a class="navbar-link" href="allads">All Ads</a></li>
 						<li class="navbar-item">
-						<li class="navbar-item"><a class="navbar-link" href="#">About
+						<li class="navbar-item"><a class="navbar-link" href="about.jsp">About
 								Us</a></li>
-						<li class="navbar-item"><a class="navbar-link" href="#l">Contact
+						<li class="navbar-item"><a class="navbar-link" href="contact.jsp">Contact
 								Us</a></li>
 					</ul>
 				</div>

@@ -78,72 +78,82 @@ public class VehicleImageUploadServlet extends HttpServlet {
 
 		try {
 			if (session.getAttribute("vehicleId") == null) {
-
 				response.sendRedirect("vehicle?validation=Vehicle ID is missing.&&status=failed");
 				return;
 			}
 
-			System.out.println("Vehicle Id: " + session.getAttribute("vehicleId"));
-
 			vehicleId = (int) session.getAttribute("vehicleId");
-
-			System.out.println("Int Vehicle Id: " + vehicleId);
 			session.removeAttribute("vehicleId");
 
 			// Retrieve the file part
 			Part filePart = request.getPart("image");
 			if (filePart == null || filePart.getSize() == 0) {
-
 				response.sendRedirect(
 						"vehicleimage?validation=No file selected.&&status=failed&&vehicleId=" + vehicleId);
 				return;
 			}
 
-			System.out.println("filePart: " + filePart);
-
-			// Get the file name
 			String fileName = filePart.getSubmittedFileName();
-
 			if (fileName == null || fileName.isEmpty()) {
-
 				response.sendRedirect("vehicleimage?validation=Invalid file.&&status=failed&&vehicleId=" + vehicleId);
 				return;
 			}
 
-			System.out.println("fileName: " + fileName);
+			// Extract file extension
+			String fileExtension = fileName.substring(fileName.lastIndexOf("."));
+			if (!fileExtension.matches("\\.(jpg|jpeg|png|gif)$")) {
+				response.sendRedirect(
+						"vehicleimage?validation=Invalid file type.&&status=failed&&vehicleId=" + vehicleId);
+				return;
+			}
+
+			// Generate a unique file name
+			String uniqueFileName = System.currentTimeMillis() + "_" + java.util.UUID.randomUUID() + fileExtension;
 
 			// Define the upload folder
-//			String uploadFolder = getServletContext().getRealPath("/images/vehicle/");
+//			String uploadFolder = "D:\\Projects\\Java Web Projects\\imex_javaWeb\\src\\main\\webapp\\images\\vehicleImages";
 
-//			String uploadFolder = getServletContext().getRealPath("") + "images" + File.separator + "vehicle";
-
-			String uploadFolder = "D:\\Projects\\Java Web Projects\\imex_javaWeb\\src\\main\\webapp\\images\\vehicleImages";
-
+			// Dynamically determine the upload folder
+			String uploadFolder = getServletContext().getRealPath("/images/vehicleImages");
 			File uploadDir = new File(uploadFolder);
-
 			if (!uploadDir.exists()) {
 				uploadDir.mkdirs(); // Create directory if it doesn't exist
 			}
 
-			System.out.println("uploadFolder: " + uploadFolder);
+			System.out.println("path Exists or not: " + uploadDir.exists());
 
-			// Save the file
-			String filePath = uploadFolder + File.separator + fileName;
-			filePart.write(filePath);
-
-			System.out.println("Save filePath: " + filePath);
-
-			// Save the relative path to the database
-			imagePath = "images/vehicle/" + fileName;
-
-			System.out.println("Databse Save Path: " + imagePath);
+			String filePath = uploadFolder + File.separator + uniqueFileName;
 
 			vehicleService vehicleservice = new vehicleService();
 
+			// Check if the image already exists for this vehicle
 			boolean imageStatus = vehicleservice.imageCheck(vehicleId);
-			boolean status = false;
 
-			System.out.println("imageStatus: " + imageStatus);
+			if (imageStatus) {
+				// Get the current image path from the database
+				String existingImagePath = vehicleservice.getVehicleImagePath(vehicleId);
+
+				System.out.println("existingImagePath: " + uploadFolder + File.separator + existingImagePath);
+
+				if (existingImagePath != null) {
+					File existingFile = new File(uploadFolder + File.separator + existingImagePath);
+					if (existingFile.exists()) {
+						// Delete the existing image
+						boolean deleted = existingFile.delete();
+						System.out.println("Existing image deleted: " + deleted);
+					}
+				}
+			}
+
+			// Save the new image
+			filePart.write(filePath);
+
+			// Save the relative path to the database
+			imagePath = "images/vehicleImages/" + uniqueFileName;
+
+			System.out.println("imagePath: " + imagePath);
+
+			boolean status = false;
 
 			if (imageStatus) {
 				status = vehicleservice.updateVehicleImage(vehicleId, imagePath);
@@ -152,23 +162,18 @@ public class VehicleImageUploadServlet extends HttpServlet {
 			}
 
 			if (status) {
-
 				response.sendRedirect(
 						"vehicleimage?validation=Image uploaded successfully.&&status=success&&vehicleId=" + vehicleId);
 			} else {
-
 				response.sendRedirect(
 						"vehicleimage?validation=Failed to save image in database.&&status=failed&&vehicleId="
 								+ vehicleId);
 			}
 		} catch (Exception e) {
-
 			e.printStackTrace();
-
 			response.sendRedirect(
 					"vehicleimage?validation=Error occurred during upload.&&status=failed&&vehicleId=" + vehicleId);
 		}
-
 	}
 
 }

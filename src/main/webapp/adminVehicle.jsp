@@ -91,17 +91,45 @@ if (session.getAttribute("userId") == null) {
 												<td>${vehicle.conditionName}</td>
 												<td><a
 													href="vehicleupdate?vehicleId=${vehicle.vehicleId}"><button
-															class="btn btn-sm btn-primary" type="submit">Edit</button></a>
-
-													<a href="vehicleimage?vehicleId=${vehicle.vehicleId}"><button
-															class="btn btn-sm btn-warning mt-2" type="submit">Upload
+															style="font-size: 12px;" class="btn btn-sm btn-primary"
+															type="submit">Edit</button></a> <a
+													href="vehicleimage?vehicleId=${vehicle.vehicleId}"><button
+															class="btn btn-sm btn-warning mt-2"
+															style="font-size: 10px;" type="submit">Upload
 															Image</button></a>
 
-													<form class="mt-2" action="vehicledelete" method="post">
-														<input name="vehicleId" type="hidden"
-															value="${vehicle.vehicleId}">
-														<button class="btn btn-sm btn-danger" type="submit">Delete</button>
-													</form></td>
+													<button class="btn mt-2 btn-sm btn-danger"
+														data-bs-toggle="modal" style="font-size: 12px;"
+														data-bs-target="#vehicleDeleteConfirm">Delete</button></td>
+
+												<!-- Vertically centered modal -->
+												<div class="modal fade" id="vehicleDeleteConfirm"
+													tabindex="-1" aria-labelledby="modalDeleteConfirmLabel"
+													aria-hidden="true">
+													<div class="modal-dialog modal-dialog-centered">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="modalDeleteConfirmLabel">Confirm</h5>
+																<button type="button" class="btn-close"
+																	data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
+															<div class="modal-body">
+																<p>Are you sure you want to delete this category?</p>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">Close</button>
+
+																<form class="mt-2" action="vehicledelete" method="post">
+																	<input name="vehicleId" type="hidden"
+																		value="${vehicle.vehicleId}">
+																	<button class="btn btn-danger"
+																		type="submit">Delete</button>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -138,7 +166,6 @@ if (session.getAttribute("userId") == null) {
 	<script src="./js/script.js"></script>
 
 	<jsp:include page="includes/alert.jsp" />
-	<jsp:include page="includes/session_alert.jsp" />
 </body>
 
 </html>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Category;
 import services.categoryService;
+import services.vehicleService;
 
 @WebServlet("/categoryupdate")
 public class CategoryUpdateServlet extends HttpServlet {
@@ -57,6 +58,7 @@ public class CategoryUpdateServlet extends HttpServlet {
 		categoryId = Integer.parseInt(request.getParameter("categoryId"));
 
 		categoryService service = new categoryService();
+		vehicleService vehicleService = new vehicleService();
 		Category categoryUpdated = new Category();
 
 		categoryUpdated = service.getOne(categoryId);
@@ -144,6 +146,17 @@ public class CategoryUpdateServlet extends HttpServlet {
 
 			Category category = new Category();
 			category.setCategoryId(categoryId);
+
+			boolean vehicleAvailabilityStatus = vehicleService.getByCategory(categoryId);
+
+			if (vehicleAvailabilityStatus) {
+				request.setAttribute("status", "failed");
+				request.setAttribute("validation",
+						"Category Can't Deleted As Vehicle Ads are refered by this Category!");
+
+				dispatcher.forward(request, response);
+				return;
+			}
 
 			boolean status = service.delete(category);
 
