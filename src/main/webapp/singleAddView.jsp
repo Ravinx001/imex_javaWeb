@@ -206,7 +206,7 @@
 								<a href="viewadd?vehicleId=${recomendedvehicle.vehicleId}">
 									<div class="product-media">
 										<div class="product-img">
-											<img src="images/cars/car5.jpg" alt="product">
+											<img src="${recomendedvehicle.imagePath}" alt="product">
 										</div>
 										<div class="cross-vertical-badge product-badge">
 											<i class="fas fa-clipboard-check"></i> <span>recommend</span>
