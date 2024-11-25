@@ -57,7 +57,7 @@
 					<div class="single-content">
 						<h2>contact us</h2>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="home">Home</a></li>
+							<li class="breadcrumb-item"><a href="/">Home</a></li>
 							<li class="breadcrumb-item active" aria-current="page">contact</li>
 						</ol>
 					</div>
@@ -66,13 +66,13 @@
 		</div>
 	</section>
 	<!--=====================================
-                  SINGLE BANNER PART END
-        =======================================-->
+                      SINGLE BANNER PART END
+            =======================================-->
 
 
 	<!--=====================================
-                    CONTACT PART START
-        =======================================-->
+                        CONTACT PART START
+            =======================================-->
 	<section class="contact-part">
 		<div class="container">
 			<div class="row">
@@ -81,22 +81,28 @@
 						<i class="fas fa-map-marker-alt"></i>
 						<h3>Find us</h3>
 						<p>
-							172/B Dutugemunu St, <span> Nugegoda 10250.</span>
+							<a href="https://maps.app.goo.gl/3CtvSWSWsWJhFoF8A">172/B
+								Dutugemunu St, <span> Nugegoda 10250.</span>
+							</a>
 						</p>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="contact-info">
 						<i class="fas fa-phone-alt"></i>
-						<h3>Make a Call</h3>
-						<p>077 794 9032</p>
+						<h3 class="mt-4">Make a Call</h3>
+						<p>
+							<a href="tel:077 794 9032">077 794 9032</a>
+						</p>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="contact-info">
 						<i class="fas fa-envelope"></i>
-						<h3>Send Mail</h3>
-						<p>info@imexlanka.com</p>
+						<h3 class="mt-4">Send Mail</h3>
+						<p>
+							<a href="mailto:info.imexlink@gmail.com">info.imexlink@gmail.com</a>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -110,28 +116,41 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<form class="contact-form">
+					<form action="{{ route('contactUsMessage') }}" method="POST"
+						class="contact-form">
+
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Your Name">
+									<input type="text" name="customerName" class="form-control"
+										placeholder="Your Name" 
+										required>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<input type="email" class="form-control"
-										placeholder="Your Email">
+									<input type="email" name="customerEmail" class="form-control"
+										placeholder="Your Email" 
+										required>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<input type="text" class="form-control"
-										placeholder="Your Subject">
+									<input type="mobileNumber" name="customerMobile"
+										class="form-control" placeholder="Your Mobile Number"
+										 required>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<textarea class="form-control" placeholder="Your Message"></textarea>
+									<input type="subject" name="subject" class="form-control"
+										placeholder="Subject"  required>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<textarea class="form-control" name="message"
+										placeholder="Describe" required></textarea>
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -148,8 +167,9 @@
 		</div>
 	</section>
 	<!--=====================================
-                    CONTACT PART END
-        =======================================-->
+                        CONTACT PART END
+            =======================================-->
+
 
 	<jsp:include page="includes/footer.jsp" />
 
