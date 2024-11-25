@@ -419,4 +419,30 @@ public class vehicleService {
 		return null;
 	}
 
+	public boolean updateVehicleImage(int vehicleId, String imagePath) {
+		try {
+			PreparedStatement pst = con.prepareStatement("insert into vehimgpaths values(0,?,?)");
+
+			pst.setString(1, imagePath);
+			pst.setInt(2, vehicleId);
+
+			System.out.println("----------- ------------ ----------");
+			System.out.println("----------- ------------ ----------");
+			System.out.println("----------- ------------ ----------");
+			System.out.println("Image Path: " + imagePath);
+			System.out.println("Vehicle Id: " + vehicleId);
+
+			int rowCount = pst.executeUpdate();
+
+			if (rowCount > 0) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
 }

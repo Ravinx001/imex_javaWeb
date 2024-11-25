@@ -26,6 +26,8 @@ var validation = document.getElementById("validation").value;
 			title : "<%=request.getAttribute("validation")%>",
 			icon : "success"
 		});
-		
+
 	}
+<%if (session.getAttribute("status").equals("failed") || session.getAttribute("status").equals("success")) {%>alert(<%session.getAttribute("validation");%>);<%}%>
+	
 </script>

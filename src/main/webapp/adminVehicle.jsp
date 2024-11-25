@@ -93,6 +93,9 @@ if (session.getAttribute("userId") == null) {
 													href="vehicleupdate?vehicleId=${vehicle.vehicleId}"><button
 															class="btn btn-sm btn-primary" type="submit">Edit</button></a>
 
+													<a href="vehicleimage?vehicleId=${vehicle.vehicleId}"><button
+															class="btn btn-sm btn-warning mt-2" type="submit">Upload Image</button></a>
+
 													<form class="mt-2" action="vehicledelete" method="post">
 														<input name="vehicleId" type="hidden"
 															value="${vehicle.vehicleId}">
