@@ -191,9 +191,9 @@
 						<h2>
 							Recommended <span>Ads</span>
 						</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-							aspernatur illum vel sunt libero voluptatum repudiandae veniam
-							maxime tenetur.</p>
+						<p>Discover our top vehicle recommendations tailored to suit
+							your needs. Whether you're looking for brand-new models or
+							pre-owned, well-maintained cars, we’ve got you covered.</p>
 					</div>
 				</div>
 			</div>

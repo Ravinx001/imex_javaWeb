@@ -56,6 +56,7 @@ if (session.getAttribute("userId") == null) {
 										<tr>
 											<th>Id</th>
 											<th>Title</th>
+											<th>Image</th>
 											<th>Price</th>
 											<th>M-Year</th>
 											<th>Model</th>
@@ -77,6 +78,13 @@ if (session.getAttribute("userId") == null) {
 											<tr>
 												<td>${vehicle.vehicleId}</td>
 												<td>${vehicle.title}</td>
+												<td>
+													<div class="card mb-3">
+														<img
+															src="${vehicle.imagePath}"
+															class="card-img-top" alt="...">
+													</div>
+												</td>
 												<td>${vehicle.price}</td>
 												<td>${vehicle.manufactureYear}</td>
 												<td>${vehicle.model}</td>
@@ -100,11 +108,12 @@ if (session.getAttribute("userId") == null) {
 
 													<button class="btn mt-2 btn-sm btn-danger"
 														data-bs-toggle="modal" style="font-size: 12px;"
-														data-bs-target="#vehicleDeleteConfirm">Delete</button></td>
+														data-bs-target="#vehicleDeleteConfirm${vehicle.vehicleId}">Delete</button></td>
 
 												<!-- Vertically centered modal -->
-												<div class="modal fade" id="vehicleDeleteConfirm"
-													tabindex="-1" aria-labelledby="modalDeleteConfirmLabel"
+												<div class="modal fade"
+													id="vehicleDeleteConfirm${vehicle.vehicleId}" tabindex="-1"
+													aria-labelledby="modalDeleteConfirmLabel"
 													aria-hidden="true">
 													<div class="modal-dialog modal-dialog-centered">
 														<div class="modal-content">
@@ -114,7 +123,8 @@ if (session.getAttribute("userId") == null) {
 																	data-bs-dismiss="modal" aria-label="Close"></button>
 															</div>
 															<div class="modal-body">
-																<p>Are you sure you want to delete this Vehicle Advertisement?</p>
+																<p>Are you sure you want to delete this Vehicle
+																	Advertisement?</p>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary"
@@ -123,13 +133,13 @@ if (session.getAttribute("userId") == null) {
 																<form class="mt-2" action="vehicledelete" method="post">
 																	<input name="vehicleId" type="hidden"
 																		value="${vehicle.vehicleId}">
-																	<button class="btn btn-danger"
-																		type="submit">Delete</button>
+																	<button class="btn btn-danger" type="submit">Delete</button>
 																</form>
 															</div>
 														</div>
 													</div>
 												</div>
+
 											</tr>
 										</c:forEach>
 									</tbody>

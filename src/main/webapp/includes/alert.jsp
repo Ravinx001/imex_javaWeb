@@ -13,23 +13,21 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.3/dist/sweetalert2.all.min.js"></script>
-
 <script>
-var status = document.getElementById("status").value;
-var validation = document.getElementById("validation").value;
+	var status = document.getElementById("status").value;
+	var validation = document.getElementById("validation").value;
 
 	if (status == "failed" && validation != "null") {
 		Swal.fire({
-			title : "<%=request.getAttribute("validation")%>",
+			title : decodeURIComponent(validation),
 			icon : "error"
 		});
-		
+
 	}
 
 	if (status == "success" && validation != "null") {
 		Swal.fire({
-			title : "<%=request.getAttribute("validation")%>
-	",
+			title : decodeURIComponent(validation),
 			icon : "success"
 		});
 

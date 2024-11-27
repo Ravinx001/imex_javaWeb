@@ -96,7 +96,7 @@
 													id="chcek1"
 													${not empty requestScope.condition_nur && requestScope.condition_nur != -1 ? 'checked' : ''}>
 											</div> <label class="product-widget-label" for="chcek1"> <span
-												class="product-widget-type sale">Brand New - Un
+												class="product-widget-type sale" style="font-size: 12px;">Brand New - Un
 													Registered</span>
 										</label>
 										</li>

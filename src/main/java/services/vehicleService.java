@@ -217,19 +217,21 @@ public class vehicleService {
 		return false;
 	}
 
-	public boolean delete(Vehicle vehicle) {
+	public boolean delete(int vehicleId) {
 
 		try {
 			PreparedStatement pst1 = con.prepareStatement("delete from vehimgpaths where vehicleId = ?");
-			PreparedStatement pst2 = con.prepareStatement("delete from vehicle where vehicleId = ?");
+			PreparedStatement pst2 = con.prepareStatement("delete from vehicle WHERE vehicleId = ?");
 
-			pst1.setInt(1, vehicle.getVehicleId());
-			pst2.setInt(1, vehicle.getVehicleId());
+			pst1.setInt(1, vehicleId);
+			pst2.setInt(1, vehicleId);
+
+			System.out.println("Vehicle Id from Vehicle Delete Service Function: " + vehicleId);
 
 			int rowCount1 = pst1.executeUpdate();
 			int rowCount2 = pst2.executeUpdate();
 
-			if (rowCount1 > 0 || rowCount2 > 0) {
+			if (rowCount2 > 0) {
 				return true;
 			}
 

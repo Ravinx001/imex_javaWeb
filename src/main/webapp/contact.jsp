@@ -57,7 +57,7 @@
 					<div class="single-content">
 						<h2>contact us</h2>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="/">Home</a></li>
+							<li class="breadcrumb-item"><a href="home">Home</a></li>
 							<li class="breadcrumb-item active" aria-current="page">contact</li>
 						</ol>
 					</div>
@@ -107,61 +107,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-12">
 					<div class="contact-map">
 						<iframe
 							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.178895858568!2d79.87923977483496!3d6.8691553931295335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253dd7878c73b%3A0x4bf67af9a0a44e5b!2sIMEX%20LINK%20(PVT)%20LTD!5e0!3m2!1sen!2slk!4v1708970972661!5m2!1sen!2slk"
 							width="600" height="450" style="border: 0;" allowfullscreen=""
 							loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 					</div>
-				</div>
-				<div class="col-lg-6">
-					<form action="{{ route('contactUsMessage') }}" method="POST"
-						class="contact-form">
-
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="form-group">
-									<input type="text" name="customerName" class="form-control"
-										placeholder="Your Name" 
-										required>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group">
-									<input type="email" name="customerEmail" class="form-control"
-										placeholder="Your Email" 
-										required>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group">
-									<input type="mobileNumber" name="customerMobile"
-										class="form-control" placeholder="Your Mobile Number"
-										 required>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group">
-									<input type="subject" name="subject" class="form-control"
-										placeholder="Subject"  required>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group">
-									<textarea class="form-control" name="message"
-										placeholder="Describe" required></textarea>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-btn">
-									<button class="btn btn-inline">
-										<i class="fas fa-paper-plane"></i> <span>send message</span>
-									</button>
-								</div>
-							</div>
-						</div>
-					</form>
 				</div>
 			</div>
 		</div>

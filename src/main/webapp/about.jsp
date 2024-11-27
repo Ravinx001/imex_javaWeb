@@ -61,7 +61,7 @@
 					<div class="single-content">
 						<h2>about company</h2>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="/">Home</a></li>
+							<li class="breadcrumb-item"><a href="home">Home</a></li>
 							<li class="breadcrumb-item active" aria-current="page">about</li>
 						</ol>
 					</div>

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Vehicle;
 import services.vehicleService;
 import utils.IsInt;
 
@@ -38,12 +37,11 @@ public class VehicleDeleteServlet extends HttpServlet {
 			vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
 		}
 
-		Vehicle vehicle = new Vehicle();
 		vehicleService vehicleservice = new vehicleService();
 
-		vehicle.setVehicleId(vehicleId);
+		System.out.println("Vehicle Id from Vehicle Delete Servlet: " + vehicleId);
 
-		status = vehicleservice.delete(vehicle);
+		status = vehicleservice.delete(vehicleId);
 
 		if (status) {
 			response.sendRedirect("vehicle?validation=Successfully Deleted !&&status=success");

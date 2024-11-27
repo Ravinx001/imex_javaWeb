@@ -110,7 +110,7 @@
 						</h2>
 						<p>Chase your dreams with modernity integrated with latest
 							technology. Experience a comfortable, smooth ride.</p>
-						<a href="#" class="btn btn-inline"> <i class="fas fa-eye"></i>
+						<a href="allads" class="btn btn-inline"> <i class="fas fa-eye"></i>
 							<span>view all</span>
 						</a>
 					</div>
@@ -180,7 +180,7 @@
 						<p>Built to last, built to drive. Find your ideal match from
 							our trusted, local selection of dependable & fuel-efficient used
 							cars.</p>
-						<a href="#" class="btn btn-inline"> <i class="fas fa-eye"></i>
+						<a href="allads" class="btn btn-inline"> <i class="fas fa-eye"></i>
 							<span>view all</span>
 						</a>
 					</div>
@@ -249,9 +249,9 @@
 						<h2>
 							Our Recommend <span>Ads</span>
 						</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-							aspernatur illum vel sunt libero voluptatum repudiandae veniam
-							maxime tenetur.</p>
+						<p>Discover our top vehicle recommendations tailored to suit
+							your needs. Whether you're looking for brand-new models or
+							pre-owned, well-maintained cars, we’ve got you covered.</p>
 					</div>
 				</div>
 			</div>
@@ -328,9 +328,10 @@
 						<h2>
 							Top Categories by <span>Ads</span>
 						</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-							aspernatur illum vel sunt libero voluptatum repudiandae veniam
-							maxime tenetur.</p>
+						<p>Explore vehicles by category to find the perfect fit for
+							your lifestyle. From sleek coupes to spacious SUVs, reliable
+							sedans, and powerful trucks, we have options for every preference
+							and purpose.</p>
 					</div>
 				</div>
 			</div>
