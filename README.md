@@ -374,10 +374,8 @@ We welcome contributions! Here's how you can help:
 
 <div align="center">
 
-  ![GitHub repo size](https://img.shields.io/github/repo-size/Ravinx001/imex_javaWeb/?style=for-the-badge)
-  ![GitHub stars](https://img.shields.io/github/stars/Ravinx001/imex_javaWeb/?style=for-the-badge)
-  ![GitHub forks](https://img.shields.io/github/forks/Ravinx001/imex_javaWeb/?style=for-the-badge)
-  ![GitHub issues](https://img.shields.io/github/issues/Ravinx001/imex_javaWeb/?style=for-the-badge)
+[![Contributors](https://img.shields.io/github/contributors/Ravinx001/imex_javaWeb?style=for-the-badge)](https://github.com/Ravinx001/imex_javaWeb/graphs/contributors)
+[![Issues](https://img.shields.io/github/issues/Ravinx001/imex_javaWeb?style=for-the-badge)](https://github.com/Ravinx001/imex_javaWeb/issues)
 
 </div>
 
