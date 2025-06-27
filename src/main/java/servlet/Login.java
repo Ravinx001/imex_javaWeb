@@ -83,7 +83,7 @@ public class Login extends HttpServlet {
 			System.out.println("email: " + loggedUser.getEmail());
 			System.out.println("password: " + loggedUser.getPassword());
 
-			// Redirect to the InquiryCreate servlet
+			// Redirect to the InquiryCreate
 			response.sendRedirect("inquiry");
 
 			return;
@@ -91,7 +91,12 @@ public class Login extends HttpServlet {
 		} else {
 			request.setAttribute("status", "failed");
 			request.setAttribute("validation", "Invalid Email or Password !");
+			
+			System.out.println("email: " + uemail);
+			System.out.println("password: " + upwd);
+			
 			dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
 			return;
 		}
 
